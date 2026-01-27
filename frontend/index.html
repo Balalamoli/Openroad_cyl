@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenRoadCyL - Incidencias de Tráfico en Castilla y León</title>
+    
+    <!-- Green Coding: CSS minificado y recursos optimizados -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Leaflet.js para mapas -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    
+    <!-- Chart.js para estadísticas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    
+                   <img src="img/logo.png" alt="OpenRoadCYL" class="logo-image"  >
+                    <div class="logo-text">
+                        <h1>OpenRoadCyL</h1> 
+                        <span class="logo-subtitle">CASTILLA Y LEON</span>
+                    </div>
+                </div>
+             
+                <nav class="nav">
+                    <button id="btn-mapa" class="nav-btn active">Mapa</button>
+                    <button id="btn-estadisticas" class="nav-btn">Estadísticas</button>
+                    <button id="btn-favoritos" class="nav-btn">Favoritos</button>
+                    <div class="auth-section">
+                        <button id="btn-login" class="btn-auth">Iniciar Sesión</button>
+                        <button id="btn-register" class="btn-auth">Registrarse</button>
+                        <div id="user-menu" class="user-menu" style="display: none;">
+                            <span id="user-name"></span>
+                            <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Sección de Filtros -->
+            <section id="filtros-section" class="filters-section">
+                <div class="filters-container">
+                    <h3>Filtrar Incidencias</h3>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="filter-provincia">Provincia:</label>
+                            <select id="filter-provincia">
+                                <option value="">Todas las provincias</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-tipo">Tipo:</label>
+                            <select id="filter-tipo">
+                                <option value="">Todos los tipos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-estado">Estado:</label>
+                            <select id="filter-estado">
+                                <option value="">Todos los estados</option>
+                                <option value="activa">Activa</option>
+                                <option value="en_proceso">En Proceso</option>
+                                <option value="resuelta">Resuelta</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="btn-aplicar-filtros" class="btn-primary">Aplicar Filtros</button>
+                            <button id="btn-limpiar-filtros" class="btn-secondary">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección del Mapa -->
+            <section id="mapa-section" class="map-section">
+                <div class="section-header">
+                    <h2>Mapa de Incidencias</h2>
+                    <div class="map-controls">
+                        <button id="btn-actualizar" class="btn-refresh">🔄 Actualizar</button>
+                        <span id="total-incidencias" class="counter">0 incidencias</span>
+                    </div>
+                </div>
+                <div id="map" class="map-container"></div>
+            </section>
+
+            <!-- Sección de Estadísticas -->
+            <section id="estadisticas-section" class="stats-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Estadísticas de Incidencias</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="chart-container">
+                        <h3>Incidencias por Provincia</h3>
+                        <canvas id="chart-provincias"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Incidencias por Tipo</h3>
+                        <canvas id="chart-tipos"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Favoritos -->
+            <section id="favoritos-section" class="favorites-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Mis Incidencias Favoritas</h2>
+                </div>
+                <div id="favoritos-list" class="favorites-list">
+                    <p class="no-auth-message">Inicia sesión para ver tus favoritos</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de Login/Registro -->
+    <div id="auth-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <!-- Formulario de Login -->
+            <div id="login-form" class="auth-form">
+                <h2>Iniciar Sesión</h2>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Contraseña:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                </form>
+                <p class="auth-switch">
+                    ¿No tienes cuenta? <a href="#" id="switch-to-register">Regístrate aquí</a>
+                </p>
+            </div>
+
+            <!-- Formulario de Registro -->
+            <div id="register-form" class="auth-form" style="display: none;">
+                <h2>Registrarse</h2>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label for="register-nombre">Nombre:</label>
+                        <input type="text" id="register-nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Contraseña:</label>
+                        <input type="password" id="register-password" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-primary">Registrarse</button>
+                </form>
+                <p class="auth-switch">
+                    ¿Ya tienes cuenta? <a href="#" id="switch-to-login">Inicia sesión aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notifications" class="notifications"></div>
+
+    <!-- Green Coding: Script principal al final para optimizar carga -->
+    <script src="js/main.js"></script>
+</body>
+</html>
