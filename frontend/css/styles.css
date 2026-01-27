@@ -235,6 +235,20 @@ body {
     transition: var(--transition);
 }
 
+.btn-info {
+    background: var(--info-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-info:hover {
+    background: #2980b9;
+}
+
 /* Section Headers */
 .section-header {
     display: flex;
@@ -651,5 +665,7 @@ body {
     color: var(--primary-color);
     font-weight: 600;
 }
-    }
+  
+#btn-guardar-incidencia {
+    width: 100%;
 }

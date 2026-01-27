@@ -96,6 +96,12 @@ class OpenRoadCyL {
         document.getElementById('btn-aplicar-filtros').addEventListener('click', () => this.applyFilters());
         document.getElementById('btn-limpiar-filtros').addEventListener('click', () => this.clearFilters());
         document.getElementById('btn-actualizar').addEventListener('click', () => this.refreshData());
+        
+        // Importar datos JCyL
+        const btnImportarJCyL = document.getElementById('btn-importar-jcyl');
+        if (btnImportarJCyL) {
+            btnImportarJCyL.addEventListener('click', () => this.importJCyL());
+        }
 
         // Green Coding: Cerrar modal al hacer clic fuera
         document.getElementById('auth-modal').addEventListener('click', (e) => {
@@ -490,6 +496,37 @@ class OpenRoadCyL {
         } catch (error) {
             console.error('Error en refreshData:', error);
             this.showNotification('Error al actualizar', 'error');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    /**
+     * Importar datos de la Junta de Castilla y León
+     */
+    async importJCyL() {
+        this.showLoading(true);
+        
+        try {
+            const response = await this.fetchAPI(`${this.apiBase}/import_jcyl.php`, {
+                method: 'GET'
+            });
+
+            if (response.success) {
+                this.showNotification(
+                    `✅ Importación exitosa: ${response.imported} incidencias agregadas (${response.skipped} duplicadas)`,
+                    'success'
+                );
+                
+                // Recargar datos después de importar
+                await this.refreshData();
+            } else {
+                const errorMsg = response.error || 'Error desconocido en la importación';
+                this.showNotification(`❌ Error: ${errorMsg}`, 'error');
+            }
+        } catch (error) {
+            console.error('Error en importJCyL:', error);
+            this.showNotification('Error al importar datos de JCyL', 'error');
         } finally {
             this.showLoading(false);
         }
