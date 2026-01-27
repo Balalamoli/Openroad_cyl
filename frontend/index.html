@@ -92,6 +92,7 @@
                 <div class="section-header">
                     <h2>Mapa de Incidencias</h2>
                     <div class="map-controls">
+                        <button id="btn-nueva-incidencia" class="btn-primary">➕ Nueva Incidencia</button>
                         <button id="btn-actualizar" class="btn-refresh">🔄 Actualizar</button>
                         <span id="total-incidencias" class="counter">0 incidencias</span>
                     </div>
@@ -174,6 +175,62 @@
                     ¿Ya tienes cuenta? <a href="#" id="switch-to-login">Inicia sesión aquí</a>
                 </p>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear nueva incidencia -->
+    <div id="incidencia-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close close-incidencia">&times;</span>
+            
+            <h2>Reportar Nueva Incidencia</h2>
+            <form id="form-nueva-incidencia">
+                <div class="form-group">
+                    <label for="incidencia-tipo">Tipo de Incidencia:</label>
+                    <select id="incidencia-tipo" required>
+                        <option value="">Selecciona un tipo</option>
+                        <option value="Accidente">Accidente</option>
+                        <option value="Obras">Obras</option>
+                        <option value="Meteorológica">Meteorológica</option>
+                        <option value="Retención">Retención</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="incidencia-descripcion">Descripción:</label>
+                    <textarea id="incidencia-descripcion" required placeholder="Describe la incidencia..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="incidencia-provincia">Provincia:</label>
+                    <select id="incidencia-provincia" required>
+                        <option value="">Selecciona una provincia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="incidencia-carretera">Carretera:</label>
+                    <input type="text" id="incidencia-carretera" required placeholder="Ej: A-6, N-I...">
+                </div>
+
+                <div class="form-group">
+                    <label for="incidencia-pk">PK (kilómetro):</label>
+                    <input type="number" id="incidencia-pk" placeholder="Opcional" step="0.1">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="incidencia-latitud">Latitud:</label>
+                        <input type="number" id="incidencia-latitud" required placeholder="41.6518" step="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="incidencia-longitud">Longitud:</label>
+                        <input type="number" id="incidencia-longitud" required placeholder="-4.7245" step="0.0001">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Reportar Incidencia</button>
+            </form>
         </div>
     </div>
 

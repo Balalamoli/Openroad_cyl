@@ -375,6 +375,8 @@ body {
     max-width: 400px;
     position: relative;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .close {
@@ -563,5 +565,49 @@ body {
     .modal-content {
         padding: 1.5rem;
         margin: 20px;
+    }
+}
+
+/* Formulario de Nueva Incidencia */
+#incidencia-modal .modal-content {
+    max-width: 500px;
+}
+
+#form-nueva-incidencia h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+#form-nueva-incidencia textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+}
+
+#form-nueva-incidencia textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(44, 90, 160, 0.2);
+}
+
+#form-nueva-incidencia select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
     }
 }

@@ -29,6 +29,7 @@ class Usuario {
     public function register() {
         // Verificar si el email ya existe
         if ($this->emailExists()) {
+            error_log("Intento de registro con email existente: " . $this->email);
             return false;
         }
 
@@ -41,6 +42,7 @@ class Usuario {
         
         // Encriptar contraseña (Seguridad)
         $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
+        error_log("Registro de usuario: " . $this->email . " - Hash: " . substr($hashed_password, 0, 20) . "...");
 
         $stmt->bindParam(':nombre', $this->nombre);
         $stmt->bindParam(':email', $this->email);
@@ -48,10 +50,12 @@ class Usuario {
 
         if ($stmt->execute()) {
             $this->id = $this->conn->lastInsertId();
+            error_log("Usuario registrado exitosamente: " . $this->email . " (ID: " . $this->id . ")");
             return true;
+        } else {
+            error_log("Error al ejecutar insert en registro: " . json_encode($stmt->errorInfo()));
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -67,13 +71,23 @@ class Usuario {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
+            // Log para debug
+            error_log("Intento de login - Email: $email");
+            error_log("Hash en BD: " . substr($row['password'], 0, 20) . "...");
+            error_log("Contraseña recibida: " . substr($password, 0, 10) . "...");
+            
             // Verificar contraseña (Seguridad)
             if (password_verify($password, $row['password'])) {
                 $this->id = $row['id'];
                 $this->nombre = $row['nombre'];
                 $this->email = $row['email'];
+                error_log("Login exitoso para: $email");
                 return true;
+            } else {
+                error_log("Contraseña incorrecta para: $email");
             }
+        } else {
+            error_log("Usuario no encontrado: $email");
         }
 
         return false;
