@@ -14,9 +14,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-// Green Coding: Headers de caché para reducir peticiones
-header('Cache-Control: public, max-age=300'); // 5 minutos de caché
-header('ETag: ' . md5(filemtime(__FILE__)));
+// No cachear para asegurar datos frescos
+header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 
 // Manejar preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
