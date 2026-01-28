@@ -5,6 +5,17 @@
  * Green Coding: Respuestas optimizadas y caché de headers
  */
 
+// Cargar configuración de seguridad de forma opcional
+$securityLoaded = false;
+if (file_exists('../config/security.php')) {
+    try {
+        require_once '../config/security.php';
+        $securityLoaded = true;
+    } catch (Exception $e) {
+        error_log("No se pudo cargar configuración de seguridad: " . $e->getMessage());
+    }
+}
+
 // Configurar para que los errores no rompan el JSON
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
@@ -14,10 +25,29 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
+// Headers de seguridad básicos
+header('X-XSS-Protection: 1; mode=block');
+header('X-Frame-Options: SAMEORIGIN');
+header('X-Content-Type-Options: nosniff');
+
 // No cachear para asegurar datos frescos
 header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: 0');
+
+// Aplicar rate limiting muy permisivo si está disponible
+if ($securityLoaded && class_exists('SecurityConfig')) {
+    try {
+        $rateLimitOk = SecurityConfig::checkRateLimit(200, 3600); // 200 requests por hora
+        if (!$rateLimitOk) {
+            // Solo logear, no bloquear
+            SecurityConfig::logEvent('rate_limit_warning', ['ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown']);
+        }
+    } catch (Exception $e) {
+        // Ignorar errores de rate limiting
+        error_log("Rate limiting error: " . $e->getMessage());
+    }
+}
 
 // Manejar preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -50,6 +80,10 @@ try {
     }
 
 } catch (Exception $e) {
+    // Log básico de errores
+    $logEntry = date('Y-m-d H:i:s') . " - Error en API: " . $e->getMessage() . "\n";
+    file_put_contents(__DIR__ . '/../logs/api_errors.log', $logEntry, FILE_APPEND | LOCK_EX);
+    
     error_log("Error en API incidencias: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
@@ -65,6 +99,14 @@ try {
 function handleGetRequest($controller) {
     $action = $_GET['action'] ?? 'list';
     
+    // Sanitización básica (opcional si SecurityConfig está disponible)
+    global $securityLoaded;
+    if ($securityLoaded && class_exists('SecurityConfig')) {
+        $action = SecurityConfig::sanitizeInput($action);
+    } else {
+        $action = htmlspecialchars(trim($action), ENT_QUOTES, 'UTF-8');
+    }
+    
     switch ($action) {
         case 'list':
             // Filtros opcionales (Green Coding: solo datos necesarios)
@@ -72,16 +114,33 @@ function handleGetRequest($controller) {
             $tipo = $_GET['tipo'] ?? null;
             $estado = $_GET['estado'] ?? null;
             
+            // Sanitizar filtros si existen
+            if ($provincia) {
+                $provincia = $securityLoaded && class_exists('SecurityConfig') ? 
+                    SecurityConfig::sanitizeInput($provincia) : 
+                    htmlspecialchars(trim($provincia), ENT_QUOTES, 'UTF-8');
+            }
+            if ($tipo) {
+                $tipo = $securityLoaded && class_exists('SecurityConfig') ? 
+                    SecurityConfig::sanitizeInput($tipo) : 
+                    htmlspecialchars(trim($tipo), ENT_QUOTES, 'UTF-8');
+            }
+            if ($estado) {
+                $estado = $securityLoaded && class_exists('SecurityConfig') ? 
+                    SecurityConfig::sanitizeInput($estado) : 
+                    htmlspecialchars(trim($estado), ENT_QUOTES, 'UTF-8');
+            }
+            
             $result = $controller->listar($provincia, $tipo, $estado);
             break;
             
         case 'detail':
             $id = $_GET['id'] ?? null;
-            if (!$id) {
+            if (!$id || !is_numeric($id)) {
                 http_response_code(400);
                 echo json_encode([
                     'success' => false,
-                    'message' => 'ID requerido'
+                    'message' => 'ID numérico requerido'
                 ]);
                 return;
             }
@@ -141,6 +200,19 @@ function handlePostRequest($controller) {
     
     switch ($action) {
         case 'create':
+            // Validar campos requeridos básicos
+            $requiredFields = ['tipo', 'descripcion', 'provincia', 'latitud', 'longitud'];
+            foreach ($requiredFields as $field) {
+                if (empty($input[$field])) {
+                    http_response_code(400);
+                    echo json_encode([
+                        'success' => false,
+                        'message' => "Campo requerido: $field"
+                    ]);
+                    return;
+                }
+            }
+            
             $result = $controller->crear($input);
             break;
             
