@@ -6,7 +6,13 @@
 
 class OpenRoadCyL {
     constructor() {
-        this.apiBase = '../backend/api';
+        // Determinar la ruta base según dónde esté alojada la aplicación
+        const path = window.location.pathname;
+        if (path.includes('/proyecto_base/')) {
+            this.apiBase = '/proyecto_base/backend/api';
+        } else {
+            this.apiBase = '/backend/api';
+        }
         this.map = null;
         this.markers = [];
         this.incidencias = [];
@@ -20,7 +26,8 @@ class OpenRoadCyL {
             provincias: null,
             tipos: null,
             lastFetch: null,
-            cacheDuration: 300000 // 5 minutos
+            cacheDuration: 300000, // 5 minutos
+            geocoding: {} // Cache para geocoding
         };
         
         this.init();
@@ -191,10 +198,13 @@ class OpenRoadCyL {
             params.append('_t', Date.now());
             const response = await this.fetchAPI(`/incidencias.php?action=list&${params}`);
             
+            console.log('Response from API:', response);
+            
             if (response.success) {
                 this.incidencias = response.data;
                 this.cache.lastFetch = now;
                 console.log('Incidencias cargadas:', this.incidencias.length);
+                console.log('Primer incidencia (debug):', this.incidencias[0]);
                 return true;
             }
             return false;
@@ -249,12 +259,16 @@ class OpenRoadCyL {
      * Green Coding: Optimización de marcadores para mejor rendimiento
      */
     renderMapMarkers() {
+        console.log('renderMapMarkers llamado. Incidencias:', this.incidencias.length);
+        
         // Limpiar marcadores existentes
         this.markers.forEach(marker => this.map.removeLayer(marker));
         this.markers = [];
 
         // Green Coding: Crear marcadores de forma eficiente
-        this.incidencias.forEach(incidencia => {
+        this.incidencias.forEach((incidencia, index) => {
+            console.log(`Procesando incidencia ${index}:`, incidencia);
+            
             if (incidencia.lat && incidencia.lng) {
                 const icon = this.getIncidenciaIcon(incidencia.tipo, incidencia.estado);
                 
@@ -263,8 +277,12 @@ class OpenRoadCyL {
                     .addTo(this.map);
                 
                 this.markers.push(marker);
+            } else {
+                console.warn(`Incidencia sin coordenadas válidas:`, incidencia);
             }
         });
+        
+        console.log('Marcadores agregados al mapa:', this.markers.length);
     }
 
     /**
@@ -503,33 +521,201 @@ class OpenRoadCyL {
 
     /**
      * Importar datos de la Junta de Castilla y León
+     * Lee el JSON local directamente desde el frontend
      */
     async importJCyL() {
         this.showLoading(true);
         
         try {
-            const response = await this.fetchAPI(`${this.apiBase}/import_jcyl.php`, {
-                method: 'GET'
-            });
+            // Cargar el JSON desde el frontend
+            const response = await fetch('./incidencias.json');
+            
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el archivo de incidencias');
+            }
+            
+            const data = await response.json();
+            
+            if (!data.incidencias || !Array.isArray(data.incidencias)) {
+                throw new Error('Estructura de JSON inválida');
+            }
 
-            if (response.success) {
+            // Procesar incidencias
+            let imported = 0;
+            let skipped = 0;
+            
+            for (const inc of data.incidencias) {
+                try {
+                    const creado = await this.createIncidenciaFromJCyL(inc);
+                    if (creado) {
+                        imported++;
+                    } else {
+                        skipped++;
+                    }
+                } catch (error) {
+                    console.error('Error al crear incidencia:', error);
+                    skipped++;
+                }
+            }
+
+            if (imported > 0) {
                 this.showNotification(
-                    `✅ Importación exitosa: ${response.imported} incidencias agregadas (${response.skipped} duplicadas)`,
+                    `✅ Importación exitosa: ${imported} incidencias agregadas (${skipped} duplicadas)`,
                     'success'
                 );
                 
                 // Recargar datos después de importar
                 await this.refreshData();
+                
+                // Pequeño delay para asegurar que los datos están cargados antes de renderizar
+                await new Promise(resolve => setTimeout(resolve, 500));
+                this.renderMapMarkers();
             } else {
-                const errorMsg = response.error || 'Error desconocido en la importación';
-                this.showNotification(`❌ Error: ${errorMsg}`, 'error');
+                this.showNotification(
+                    `⚠️ No se agregaron nuevas incidencias (${skipped} duplicadas)`,
+                    'warning'
+                );
             }
+            
         } catch (error) {
             console.error('Error en importJCyL:', error);
-            this.showNotification('Error al importar datos de JCyL', 'error');
+            this.showNotification('Error al importar datos de JCyL: ' + error.message, 'error');
         } finally {
             this.showLoading(false);
         }
+    }
+
+    /**
+     * Crear una incidencia desde datos de JCyL
+     */
+    async createIncidenciaFromJCyL(incJCyL) {
+        // Mapear tipo
+        const tipo = this.mapTypeFromJCyL(incJCyL.Tipo, incJCyL.Causa);
+        
+        // Obtener coordenadas reales desde el backend
+        const coords = await this.getGeocodeFromBackend(incJCyL.Via, incJCyL.Provincia);
+        
+        // Construir descripción
+        const descripcion = this.buildDescriptionFromJCyL(incJCyL);
+        
+        // Preparar payload
+        const payload = {
+            action: 'create',
+            tipo: tipo,
+            descripcion: descripcion,
+            provincia: incJCyL.Provincia,
+            carretera: incJCyL.Via,
+            pk: incJCyL.PKInicio || null,
+            latitud: coords.lat,
+            longitud: coords.lng
+        };
+        
+        try {
+            const response = await this.fetchAPI(`/incidencias.php`, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            });
+            
+            return response.success;
+        } catch (error) {
+            console.error('Error creando incidencia:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Obtener coordenadas geocodificadas desde el backend
+     * El backend cachea en BD para no repetir llamadas a Nominatim
+     * Timeout de 3 segundos para no bloquear la importación
+     */
+    async getGeocodeFromBackend(via, provincia) {
+        try {
+            const params = new URLSearchParams({ via, provincia });
+            const url = `${this.apiBase}/geocode.php?${params}`;
+            
+            // Crear timeout de 3 segundos
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Geocoding timeout')), 3000)
+            );
+            
+            const fetchPromise = fetch(url, { 
+                headers: { 'User-Agent': 'OpenRoadCyL' }
+            });
+            
+            // Ejecutar con timeout
+            const response = await Promise.race([fetchPromise, timeoutPromise]);
+            
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                    const cacheInfo = data.cached ? '(cache)' : '(geocodificado)';
+                    console.log(`✓ ${via} - ${cacheInfo}`);
+                    return { lat: data.lat, lng: data.lng };
+                }
+            }
+        } catch (error) {
+            console.warn(`⚠ ${via}: usando fallback (${error.message})`);
+        }
+        
+        // Fallback: usar centro de provincia si falla o timeout
+        const fallback = this.getCoordsForProvincia(provincia);
+        console.log(`⚠ ${via}: fallback a centro de ${provincia}`);
+        return fallback;
+    }
+
+    /**
+     * Mapear tipo de JCyL a nuestros tipos
+     */
+    mapTypeFromJCyL(tipo, causa) {
+        const tipoLower = (tipo || '').toLowerCase();
+        const causaLower = (causa || '').toLowerCase();
+        
+        // Por causa primero
+        if (causaLower.includes('obra')) return 'Obras';
+        if (causaLower.includes('nieve') || causaLower.includes('hielo') || causaLower.includes('cadena')) return 'Meteorológica';
+        if (causaLower.includes('inundación')) return 'Meteorológica';
+        if (causaLower.includes('desprendimiento')) return 'Meteorológica';
+        if (causaLower.includes('accidente')) return 'Accidente';
+        
+        // Por tipo después
+        if (tipoLower.includes('obra')) return 'Obras';
+        if (tipoLower.includes('nieve') || tipoLower.includes('hielo') || tipoLower.includes('cadena')) return 'Meteorológica';
+        if (tipoLower.includes('cortada') || tipoLower.includes('cerrada')) return 'Retención';
+        if (tipoLower.includes('accidente')) return 'Accidente';
+        
+        return 'Retención'; // Default
+    }
+
+    /**
+     * Obtener coordenadas por provincia
+     */
+    getCoordsForProvincia(provincia) {
+        const coords = {
+            'Ávila': { lat: 40.66, lng: -4.69 },
+            'Burgos': { lat: 42.34, lng: -3.69 },
+            'León': { lat: 42.6, lng: -5.5 },
+            'Palencia': { lat: 42.0, lng: -4.53 },
+            'Salamanca': { lat: 40.97, lng: -5.66 },
+            'Soria': { lat: 41.77, lng: -2.47 },
+            'Segovia': { lat: 40.95, lng: -4.12 },
+            'Valladolid': { lat: 41.65, lng: -4.73 },
+            'Zamora': { lat: 41.50, lng: -5.75 }
+        };
+        
+        return coords[provincia] || coords['Valladolid'];
+    }
+
+    /**
+     * Construir descripción desde datos de JCyL
+     */
+    buildDescriptionFromJCyL(inc) {
+        const parts = [];
+        
+        if (inc.Tramo) parts.push(inc.Tramo);
+        if (inc.Causa) parts.push(`Causa: ${inc.Causa}`);
+        if (inc.Observaciones && inc.Observaciones !== '--') parts.push(inc.Observaciones);
+        
+        return parts.join('. ').substring(0, 500);
     }
 
     /**
