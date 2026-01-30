@@ -4,7 +4,7 @@
  * Manejo de datos de incidencias de tráfico
  */
 
-require_once '../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 class Incidencia {
     private $conn;
@@ -107,20 +107,95 @@ class Incidencia {
     }
 
     /**
+     * Verifica si ya existe una incidencia duplicada
+     * Compara por: carretera + pk + provincia + tipo
+     * Maneja correctamente valores NULL en pk
+     * @return bool true si existe duplicado
+     */
+    public function existeDuplicado() {
+        // Normalizar datos para comparación
+        $carretera_norm = trim(strtoupper($this->carretera));
+        $provincia_norm = trim($this->provincia);
+        $pk_norm = $this->pk ? trim($this->pk) : null;
+        
+        // Consulta que maneja correctamente valores NULL
+        if ($pk_norm === null || $pk_norm === '') {
+            // Si PK es NULL o vacío, buscar por carretera + provincia + tipo
+            $query = "SELECT id FROM " . $this->table_name . " 
+                      WHERE UPPER(TRIM(carretera)) = :carretera 
+                      AND provincia = :provincia 
+                      AND tipo = :tipo
+                      AND (pk IS NULL OR pk = '' OR pk = '0')
+                      LIMIT 1";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':carretera', $carretera_norm);
+            $stmt->bindParam(':provincia', $provincia_norm);
+            $stmt->bindParam(':tipo', $this->tipo);
+        } else {
+            // Si PK tiene valor, buscar por carretera + pk + provincia
+            $query = "SELECT id FROM " . $this->table_name . " 
+                      WHERE UPPER(TRIM(carretera)) = :carretera 
+                      AND TRIM(pk) = :pk 
+                      AND provincia = :provincia 
+                      LIMIT 1";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':carretera', $carretera_norm);
+            $stmt->bindParam(':pk', $pk_norm);
+            $stmt->bindParam(':provincia', $provincia_norm);
+        }
+        
+        $stmt->execute();
+        
+        $existe = $stmt->rowCount() > 0;
+        
+        if ($existe) {
+            error_log("Duplicado detectado: {$carretera_norm} PK {$pk_norm} - {$provincia_norm} - {$this->tipo}");
+        }
+        
+        return $existe;
+    }
+
+    /**
      * Crea nueva incidencia
+     * MODIFICADO: Ahora verifica duplicados antes de insertar y normaliza datos
+     * @return bool true si se creó, false si ya existía o hubo error
      */
     public function create() {
+        // Sanitizar y normalizar datos primero
+        $this->tipo = htmlspecialchars(strip_tags(trim($this->tipo)));
+        $this->descripcion = htmlspecialchars(strip_tags(trim($this->descripcion)));
+        $this->provincia = htmlspecialchars(strip_tags(trim($this->provincia)));
+        $this->carretera = htmlspecialchars(strip_tags(trim(strtoupper($this->carretera))));
+        
+        // Normalizar PK (convertir valores vacíos a NULL)
+        if (empty($this->pk) || $this->pk === '0' || $this->pk === 0) {
+            $this->pk = null;
+        } else {
+            $this->pk = trim($this->pk);
+        }
+        
+        // Establecer estado por defecto si no está definido
+        if (empty($this->estado)) {
+            $this->estado = 'activa';
+        }
+
+        // VERIFICAR: Si ya existe una incidencia duplicada
+        if ($this->existeDuplicado()) {
+            error_log("Incidencia duplicada NO insertada: {$this->carretera} PK {$this->pk} - {$this->provincia} - {$this->tipo}");
+            return false; // No insertar, ya existe
+        }
+
+        // Si no existe duplicado, insertar
         $query = "INSERT INTO " . $this->table_name . " 
-                  (tipo, descripcion, provincia, carretera, pk, latitud, longitud, estado) 
-                  VALUES (:tipo, :descripcion, :provincia, :carretera, :pk, :latitud, :longitud, :estado)";
+                  (tipo, descripcion, provincia, carretera, pk, latitud, longitud, estado, fuente, fecha_creacion, fecha_actualizacion) 
+                  VALUES (:tipo, :descripcion, :provincia, :carretera, :pk, :latitud, :longitud, :estado, :fuente, NOW(), NOW())";
 
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar datos
-        $this->tipo = htmlspecialchars(strip_tags($this->tipo));
-        $this->descripcion = htmlspecialchars(strip_tags($this->descripcion));
-        $this->provincia = htmlspecialchars(strip_tags($this->provincia));
-        $this->carretera = htmlspecialchars(strip_tags($this->carretera));
+        // Establecer fuente por defecto
+        $fuente = $this->fuente ?? 'manual';
 
         $stmt->bindParam(':tipo', $this->tipo);
         $stmt->bindParam(':descripcion', $this->descripcion);
@@ -130,8 +205,17 @@ class Incidencia {
         $stmt->bindParam(':latitud', $this->latitud);
         $stmt->bindParam(':longitud', $this->longitud);
         $stmt->bindParam(':estado', $this->estado);
+        $stmt->bindParam(':fuente', $fuente);
 
-        return $stmt->execute();
+        $resultado = $stmt->execute();
+        
+        if ($resultado) {
+            error_log("Incidencia CREADA exitosamente: {$this->carretera} PK {$this->pk} - {$this->provincia} - {$this->tipo}");
+        } else {
+            error_log("Error al insertar incidencia: {$this->carretera} PK {$this->pk} - {$this->provincia}");
+        }
+        
+        return $resultado;
     }
 
     /**

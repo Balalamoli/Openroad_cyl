@@ -1,0 +1,37 @@
+# OpenRoadCyL - Configuración de Seguridad Básica
+
+# Denegar acceso a archivos de configuración específicos
+<Files "database.php">
+    Require all denied
+</Files>
+
+<Files "security.php">
+    Require all denied
+</Files>
+
+# Denegar acceso a archivos de sistema
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+<Files ".git*">
+    Require all denied
+</Files>
+
+<Files "*.md">
+    Require all denied
+</Files>
+
+<Files "*.log">
+    Require all denied
+</Files>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Headers de seguridad básicos (opcional)
+<IfModule mod_headers.c>
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>

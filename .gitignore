@@ -1,0 +1,27 @@
+# OpenRoadCyL - Archivos a ignorar por Git
+
+# Archivos de logs de seguridad
+backend/logs/*.log
+*.log
+logs/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Archivos de IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Archivos de backup
+*.bak
+*.backup
+*.old
+
+# Archivos de configuración local (si se crean)
+config.local.php
+.env

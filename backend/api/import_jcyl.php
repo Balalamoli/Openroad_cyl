@@ -38,8 +38,26 @@ try {
 
     $importer = new ImporterJCyL();
     
-    // Importar desde archivo
-    $result = $importer->importFromFile($dataPath);
+    // Verificar si se solicita comparación de archivos
+    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if ($input && isset($input['compare_mode']) && $input['compare_mode'] === true) {
+        // Modo comparación: requiere archivo anterior y nuevo
+        $oldFile = $input['old_file'] ?? null;
+        $newFile = $input['new_file'] ?? 'incidencias_jcyl.json';
+        
+        if (!$oldFile) {
+            throw new Exception("En modo comparación se requiere especificar 'old_file'");
+        }
+        
+        $oldPath = dirname(__FILE__) . '/../data/' . $oldFile;
+        $newPath = dirname(__FILE__) . '/../data/' . $newFile;
+        
+        $result = $importer->compareAndImport($oldPath, $newPath);
+    } else {
+        // Modo importación simple (original)
+        $result = $importer->importFromFile($dataPath);
+    }
 
     ob_end_clean();
     http_response_code($result['success'] ? 200 : 400);

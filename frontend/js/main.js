@@ -102,12 +102,17 @@ class OpenRoadCyL {
         // Filtros
         document.getElementById('btn-aplicar-filtros').addEventListener('click', () => this.applyFilters());
         document.getElementById('btn-limpiar-filtros').addEventListener('click', () => this.clearFilters());
-        document.getElementById('btn-actualizar').addEventListener('click', () => this.refreshData());
         
-        // Importar datos JCyL
-        const btnImportarJCyL = document.getElementById('btn-importar-jcyl');
-        if (btnImportarJCyL) {
-            btnImportarJCyL.addEventListener('click', () => this.importJCyL());
+        // Comparar JSONs automáticamente
+        const btnCompararAuto = document.getElementById('btn-comparar-auto');
+        if (btnCompararAuto) {
+            console.log('✅ Botón "Actualizar Estados" encontrado');
+            btnCompararAuto.addEventListener('click', () => {
+                console.log('🔄 Click en botón "Actualizar Estados"');
+                this.compararJSONsAuto();
+            });
+        } else {
+            console.error('❌ Botón "btn-comparar-auto" NO encontrado');
         }
 
         // Green Coding: Cerrar modal al hacer clic fuera
@@ -123,18 +128,29 @@ class OpenRoadCyL {
      * Green Coding: Configuración optimizada del mapa
      */
     initMap() {
-        // Centrar en Castilla y León
-        this.map = L.map('map').setView([41.6518, -4.7245], 8);
+        // Pequeño delay para asegurar que el DOM esté completamente renderizado
+        setTimeout(() => {
+            try {
+                // Centrar en Castilla y León
+                this.map = L.map('map').setView([41.6518, -4.7245], 8);
 
-        // Green Coding: Usar tiles con caché del navegador
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 18,
-            // Green Coding: Configuraciones para optimizar rendimiento
-            updateWhenIdle: true,
-            updateWhenZooming: false,
-            keepBuffer: 2
-        }).addTo(this.map);
+                // Green Coding: Usar tiles con caché del navegador
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18,
+                    // Green Coding: Configuraciones para optimizar rendimiento
+                    updateWhenIdle: true,
+                    updateWhenZooming: false,
+                    keepBuffer: 2
+                }).addTo(this.map);
+                
+                console.log('✅ Mapa inicializado correctamente');
+            } catch (error) {
+                console.error('❌ Error inicializando mapa:', error);
+                // Reintentar después de un segundo
+                setTimeout(() => this.initMap(), 1000);
+            }
+        }, 100);
     }
 
     /**
@@ -260,6 +276,13 @@ class OpenRoadCyL {
      */
     renderMapMarkers() {
         console.log('renderMapMarkers llamado. Incidencias:', this.incidencias.length);
+        
+        // Verificar que el mapa esté inicializado
+        if (!this.map) {
+            console.warn('⚠️ Mapa no inicializado, reintentando...');
+            setTimeout(() => this.renderMapMarkers(), 500);
+            return;
+        }
         
         // Limpiar marcadores existentes
         this.markers.forEach(marker => this.map.removeLayer(marker));
@@ -520,202 +543,77 @@ class OpenRoadCyL {
     }
 
     /**
-     * Importar datos de la Junta de Castilla y León
-     * Lee el JSON local directamente desde el frontend
+     * Comparar JSONs automáticamente
+     * Ejecuta la comparación automática usando la API backend
      */
-    async importJCyL() {
+    async compararJSONsAuto() {
         this.showLoading(true);
         
         try {
-            // Cargar el JSON desde el frontend
-            const response = await fetch('./incidencias.json');
+            console.log('🔄 Iniciando comparación automática...');
             
-            if (!response.ok) {
-                throw new Error('No se pudo cargar el archivo de incidencias');
-            }
+            // Llamar directamente a la API que hace todo el trabajo
+            const response = await this.fetchAPI('/ejecutar_comparacion.php', {
+                method: 'POST'
+            });
             
-            const data = await response.json();
+            console.log('📊 Respuesta de comparación:', response);
             
-            if (!data.incidencias || !Array.isArray(data.incidencias)) {
-                throw new Error('Estructura de JSON inválida');
-            }
-
-            // Procesar incidencias
-            let imported = 0;
-            let skipped = 0;
-            
-            for (const inc of data.incidencias) {
-                try {
-                    const creado = await this.createIncidenciaFromJCyL(inc);
-                    if (creado) {
-                        imported++;
-                    } else {
-                        skipped++;
-                    }
-                } catch (error) {
-                    console.error('Error al crear incidencia:', error);
-                    skipped++;
-                }
-            }
-
-            if (imported > 0) {
-                this.showNotification(
-                    `✅ Importación exitosa: ${imported} incidencias agregadas (${skipped} duplicadas)`,
-                    'success'
-                );
+            if (response.success) {
+                // Mostrar notificación detallada con resultados
+                const notification = document.createElement('div');
+                notification.className = 'notification success comparison-result';
+                notification.innerHTML = `
+                    <div><strong> Estados actualizados correctamente</strong></div>
+                    <div class="result-summary">
+                        <div class="result-item">
+                            <strong>${response.imported}</strong><br>
+                            <small>Nuevas (Activas)</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>${response.updated}</strong><br>
+                            <small>En Proceso</small>
+                        </div>
+                        <div class="result-item">
+                            <strong>${response.resolved}</strong><br>
+                            <small>Resueltas</small>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                         Total procesadas: ${response.total_processed}
+                    </div>
+                    ${response.files_compared ? `
+                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">
+                         ${response.files_compared.anterior} → ${response.files_compared.nuevo}
+                    </div>
+                    ` : ''}
+                `;
                 
-                // Recargar datos después de importar
+                const container = document.getElementById('notifications');
+                container.appendChild(notification);
+                
+                // Auto-eliminar después de 15 segundos
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 15000);
+                
+                // Recargar datos para mostrar los nuevos estados
+                console.log('🔄 Recargando datos del mapa...');
                 await this.refreshData();
                 
-                // Pequeño delay para asegurar que los datos están cargados antes de renderizar
-                await new Promise(resolve => setTimeout(resolve, 500));
-                this.renderMapMarkers();
             } else {
-                this.showNotification(
-                    `⚠️ No se agregaron nuevas incidencias (${skipped} duplicadas)`,
-                    'warning'
-                );
+                console.error('❌ Error en comparación:', response.error);
+                this.showNotification(`❌ Error: ${response.error}`, 'error');
             }
             
         } catch (error) {
-            console.error('Error en importJCyL:', error);
-            this.showNotification('Error al importar datos de JCyL: ' + error.message, 'error');
+            console.error('❌ Error en comparación automática:', error);
+            this.showNotification('Error al ejecutar comparación automática: ' + error.message, 'error');
         } finally {
             this.showLoading(false);
         }
-    }
-
-    /**
-     * Crear una incidencia desde datos de JCyL
-     */
-    async createIncidenciaFromJCyL(incJCyL) {
-        // Mapear tipo
-        const tipo = this.mapTypeFromJCyL(incJCyL.Tipo, incJCyL.Causa);
-        
-        // Obtener coordenadas reales desde el backend
-        const coords = await this.getGeocodeFromBackend(incJCyL.Via, incJCyL.Provincia);
-        
-        // Construir descripción
-        const descripcion = this.buildDescriptionFromJCyL(incJCyL);
-        
-        // Preparar payload
-        const payload = {
-            action: 'create',
-            tipo: tipo,
-            descripcion: descripcion,
-            provincia: incJCyL.Provincia,
-            carretera: incJCyL.Via,
-            pk: incJCyL.PKInicio || null,
-            latitud: coords.lat,
-            longitud: coords.lng
-        };
-        
-        try {
-            const response = await this.fetchAPI(`/incidencias.php`, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
-            
-            return response.success;
-        } catch (error) {
-            console.error('Error creando incidencia:', error);
-            return false;
-        }
-    }
-
-    /**
-     * Obtener coordenadas geocodificadas desde el backend
-     * El backend cachea en BD para no repetir llamadas a Nominatim
-     * Timeout de 3 segundos para no bloquear la importación
-     */
-    async getGeocodeFromBackend(via, provincia) {
-        try {
-            const params = new URLSearchParams({ via, provincia });
-            const url = `${this.apiBase}/geocode.php?${params}`;
-            
-            // Crear timeout de 3 segundos
-            const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Geocoding timeout')), 3000)
-            );
-            
-            const fetchPromise = fetch(url, { 
-                headers: { 'User-Agent': 'OpenRoadCyL' }
-            });
-            
-            // Ejecutar con timeout
-            const response = await Promise.race([fetchPromise, timeoutPromise]);
-            
-            if (response.ok) {
-                const data = await response.json();
-                if (data.success) {
-                    const cacheInfo = data.cached ? '(cache)' : '(geocodificado)';
-                    console.log(`✓ ${via} - ${cacheInfo}`);
-                    return { lat: data.lat, lng: data.lng };
-                }
-            }
-        } catch (error) {
-            console.warn(`⚠ ${via}: usando fallback (${error.message})`);
-        }
-        
-        // Fallback: usar centro de provincia si falla o timeout
-        const fallback = this.getCoordsForProvincia(provincia);
-        console.log(`⚠ ${via}: fallback a centro de ${provincia}`);
-        return fallback;
-    }
-
-    /**
-     * Mapear tipo de JCyL a nuestros tipos
-     */
-    mapTypeFromJCyL(tipo, causa) {
-        const tipoLower = (tipo || '').toLowerCase();
-        const causaLower = (causa || '').toLowerCase();
-        
-        // Por causa primero
-        if (causaLower.includes('obra')) return 'Obras';
-        if (causaLower.includes('nieve') || causaLower.includes('hielo') || causaLower.includes('cadena')) return 'Meteorológica';
-        if (causaLower.includes('inundación')) return 'Meteorológica';
-        if (causaLower.includes('desprendimiento')) return 'Meteorológica';
-        if (causaLower.includes('accidente')) return 'Accidente';
-        
-        // Por tipo después
-        if (tipoLower.includes('obra')) return 'Obras';
-        if (tipoLower.includes('nieve') || tipoLower.includes('hielo') || tipoLower.includes('cadena')) return 'Meteorológica';
-        if (tipoLower.includes('cortada') || tipoLower.includes('cerrada')) return 'Retención';
-        if (tipoLower.includes('accidente')) return 'Accidente';
-        
-        return 'Retención'; // Default
-    }
-
-    /**
-     * Obtener coordenadas por provincia
-     */
-    getCoordsForProvincia(provincia) {
-        const coords = {
-            'Ávila': { lat: 40.66, lng: -4.69 },
-            'Burgos': { lat: 42.34, lng: -3.69 },
-            'León': { lat: 42.6, lng: -5.5 },
-            'Palencia': { lat: 42.0, lng: -4.53 },
-            'Salamanca': { lat: 40.97, lng: -5.66 },
-            'Soria': { lat: 41.77, lng: -2.47 },
-            'Segovia': { lat: 40.95, lng: -4.12 },
-            'Valladolid': { lat: 41.65, lng: -4.73 },
-            'Zamora': { lat: 41.50, lng: -5.75 }
-        };
-        
-        return coords[provincia] || coords['Valladolid'];
-    }
-
-    /**
-     * Construir descripción desde datos de JCyL
-     */
-    buildDescriptionFromJCyL(inc) {
-        const parts = [];
-        
-        if (inc.Tramo) parts.push(inc.Tramo);
-        if (inc.Causa) parts.push(`Causa: ${inc.Causa}`);
-        if (inc.Observaciones && inc.Observaciones !== '--') parts.push(inc.Observaciones);
-        
-        return parts.join('. ').substring(0, 500);
     }
 
     /**

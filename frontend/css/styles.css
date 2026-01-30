@@ -1383,3 +1383,167 @@ body {
         font-size: 1rem;
     }
 }
+/* Estilos para comparación de JSONs */
+.btn-warning {
+    background-color: var(--warning-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+}
+
+.modal-description {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.estado-explicacion {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--info-color);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.estado-explicacion li {
+    margin-bottom: 0.5rem;
+    list-style: none;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.estado-explicacion li:before {
+    content: "•";
+    color: var(--info-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.form-group small {
+    display: block;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.comparacion-preview {
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.preview-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    border: 1px solid #e9ecef;
+}
+
+.stat-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.close-comparar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-comparar:hover {
+    color: var(--danger-color);
+}
+
+/* Responsive para modal de comparación */
+@media (max-width: 768px) {
+    .preview-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+/* Animaciones para estados de incidencias */
+.estado-activa {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.estado-en_proceso {
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+.estado-resuelta {
+    color: #95a5a6;
+    font-weight: bold;
+}
+
+/* Mejoras en notificaciones para mostrar resultados de comparación */
+.notification.comparison-result {
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+}
+
+.notification.comparison-result .result-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.notification.comparison-result .result-item {
+    text-align: center;
+    padding: 0.25rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+}

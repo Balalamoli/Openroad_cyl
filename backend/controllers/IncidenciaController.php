@@ -139,6 +139,7 @@ class IncidenciaController {
             $this->incidencia->latitud = $datos['latitud'] ?? null;
             $this->incidencia->longitud = $datos['longitud'] ?? null;
             $this->incidencia->estado = $datos['estado'] ?? 'activa';
+            $this->incidencia->fuente = $datos['fuente'] ?? 'manual'; // Agregar fuente
 
             if ($this->incidencia->create()) {
                 return [
@@ -148,7 +149,7 @@ class IncidenciaController {
             } else {
                 return [
                     'success' => false,
-                    'message' => 'Error al crear incidencia'
+                    'message' => 'Incidencia duplicada o error al crear'
                 ];
             }
 
