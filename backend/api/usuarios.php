@@ -1,7 +1,6 @@
 <?php
 /**
  * OpenRoadCyL - API REST para Usuarios
- * Endpoint para autenticación y gestión de usuarios
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -10,7 +9,6 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Access-Control-Allow-Credentials: true');
 
-// Manejar preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
@@ -49,9 +47,6 @@ try {
     ]);
 }
 
-/**
- * Maneja peticiones GET
- */
 function handleGetRequest($controller) {
     $action = $_GET['action'] ?? 'session';
     
@@ -84,9 +79,6 @@ function handleGetRequest($controller) {
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
 }
 
-/**
- * Maneja peticiones POST
- */
 function handlePostRequest($controller) {
     $input = json_decode(file_get_contents('php://input'), true);
     

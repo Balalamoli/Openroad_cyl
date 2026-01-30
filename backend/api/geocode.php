@@ -1,7 +1,6 @@
 <?php
 /**
  * OpenRoadCyL - API de Geocodificación
- * Cachea coordenadas de carreteras para evitar llamadas repetidas a Nominatim
  */
 
 error_reporting(E_ALL);
@@ -35,7 +34,6 @@ try {
             exit();
         }
         
-        // Buscar en la BD primero
         $sql = "SELECT latitud, longitud FROM carreteras_geocache 
                 WHERE via = ? AND provincia = ? LIMIT 1";
         $stmt = $pdo->prepare($sql);
@@ -43,7 +41,6 @@ try {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($result) {
-            // Encontrado en cache
             echo json_encode([
                 'success' => true,
                 'cached' => true,
@@ -53,7 +50,6 @@ try {
             exit();
         }
         
-        // No está en cache, geocodificar con Nominatim (máximo 5 segundos)
         $query = "$via, $provincia, Spain";
         $encodedQuery = urlencode($query);
         
@@ -70,7 +66,6 @@ try {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         
-        // Si Nominatim no responde rápido, devolver error y usar fallback en frontend
         if (empty($response) || $httpCode !== 200) {
             http_response_code(503);
             echo json_encode([
@@ -86,14 +81,13 @@ try {
             $lat = (float)$results[0]['lat'];
             $lng = (float)$results[0]['lon'];
             
-            // Guardar en cache
             try {
                 $insertSql = "INSERT IGNORE INTO carreteras_geocache (via, provincia, latitud, longitud) 
                               VALUES (?, ?, ?, ?)";
                 $insertStmt = $pdo->prepare($insertSql);
                 $insertStmt->execute([$via, $provincia, $lat, $lng]);
             } catch (Exception $e) {
-                // Si falla el insert, no es crítico, simplemente devolvemos el resultado
+                // No es crítico si falla el cache
             }
             
             echo json_encode([

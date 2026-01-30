@@ -1,41 +1,30 @@
 /**
  * OpenRoadCyL - JavaScript Principal
- * SPA con ES6, Leaflet.js y Chart.js
- * Green Coding: Optimizaciones de rendimiento y reducción de peticiones
  */
 
 class OpenRoadCyL {
     constructor() {
-        // Determinar la ruta base según dónde esté alojada la aplicación
         const path = window.location.pathname;
-        if (path.includes('/proyecto_base/')) {
-            this.apiBase = '/proyecto_base/backend/api';
-        } else {
-            this.apiBase = '/backend/api';
-        }
+        this.apiBase = path.includes('/proyecto_base/') ? '/proyecto_base/backend/api' : '/backend/api';
         this.map = null;
         this.markers = [];
         this.incidencias = [];
         this.user = null;
         this.charts = {};
-        this.miniMap = null; // Mini mapa para seleccionar ubicación
+        this.miniMap = null;
         this.miniMapMarker = null;
         
-        // Green Coding: Cache de datos para evitar peticiones repetidas
         this.cache = {
             provincias: null,
             tipos: null,
             lastFetch: null,
-            cacheDuration: 300000, // 5 minutos
-            geocoding: {} // Cache para geocoding
+            cacheDuration: 300000,
+            geocoding: {}
         };
         
         this.init();
     }
 
-    /**
-     * Inicialización de la aplicación
-     */
     async init() {
         this.setupEventListeners();
         this.initMap();
@@ -44,12 +33,7 @@ class OpenRoadCyL {
         this.showSection('mapa');
     }
 
-    /**
-     * Configurar event listeners
-     */
     setupEventListeners() {
-        console.log('Configurando event listeners...');
-        
         // Navegación
         document.getElementById('btn-mapa').addEventListener('click', () => this.showSection('mapa'));
         document.getElementById('btn-estadisticas').addEventListener('click', () => this.showSection('estadisticas'));
@@ -74,13 +58,7 @@ class OpenRoadCyL {
         // Modal de nueva incidencia
         const btnNuevaIncidencia = document.getElementById('btn-nueva-incidencia');
         if (btnNuevaIncidencia) {
-            console.log('Botón nueva incidencia encontrado');
-            btnNuevaIncidencia.addEventListener('click', () => {
-                console.log('Click en nueva incidencia');
-                this.showIncidenciaModal();
-            });
-        } else {
-            console.error('Botón btn-nueva-incidencia NO encontrado');
+            btnNuevaIncidencia.addEventListener('click', () => this.showIncidenciaModal());
         }
         
         const closeIncidenciaBtn = document.querySelector('.close-incidencia');
@@ -106,16 +84,9 @@ class OpenRoadCyL {
         // Comparar JSONs automáticamente
         const btnCompararAuto = document.getElementById('btn-comparar-auto');
         if (btnCompararAuto) {
-            console.log('✅ Botón "Actualizar Estados" encontrado');
-            btnCompararAuto.addEventListener('click', () => {
-                console.log('🔄 Click en botón "Actualizar Estados"');
-                this.compararJSONsAuto();
-            });
-        } else {
-            console.error('❌ Botón "btn-comparar-auto" NO encontrado');
+            btnCompararAuto.addEventListener('click', () => this.compararJSONsAuto());
         }
 
-        // Green Coding: Cerrar modal al hacer clic fuera
         document.getElementById('auth-modal').addEventListener('click', (e) => {
             if (e.target.id === 'auth-modal') {
                 this.hideAuthModal();
@@ -123,39 +94,23 @@ class OpenRoadCyL {
         });
     }
 
-    /**
-     * Inicializar mapa de Leaflet
-     * Green Coding: Configuración optimizada del mapa
-     */
     initMap() {
-        // Pequeño delay para asegurar que el DOM esté completamente renderizado
         setTimeout(() => {
             try {
-                // Centrar en Castilla y León
                 this.map = L.map('map').setView([41.6518, -4.7245], 8);
-
-                // Green Coding: Usar tiles con caché del navegador
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap contributors',
                     maxZoom: 18,
-                    // Green Coding: Configuraciones para optimizar rendimiento
                     updateWhenIdle: true,
                     updateWhenZooming: false,
                     keepBuffer: 2
                 }).addTo(this.map);
-                
-                console.log('✅ Mapa inicializado correctamente');
             } catch (error) {
-                console.error('❌ Error inicializando mapa:', error);
-                // Reintentar después de un segundo
                 setTimeout(() => this.initMap(), 1000);
             }
         }, 100);
     }
 
-    /**
-     * Verificar sesión de usuario
-     */
     async checkUserSession() {
         try {
             const response = await this.fetchAPI('/usuarios.php?action=session');
@@ -164,20 +119,15 @@ class OpenRoadCyL {
                 this.updateAuthUI();
             }
         } catch (error) {
-            console.error('Error verificando sesión:', error);
+            this.showNotification('Error verificando sesión', 'error');
         }
     }
 
-    /**
-     * Cargar datos iniciales
-     * Green Coding: Carga paralela de datos para optimizar tiempo
-     */
     async loadInitialData() {
         this.showLoading(true);
         
         try {
-            // Green Coding: Cargar datos en paralelo
-            const [incidenciasResult, provinciasResult, tiposResult] = await Promise.all([
+            const [incidenciasResult] = await Promise.all([
                 this.loadIncidencias(),
                 this.loadProvincias(),
                 this.loadTipos()
@@ -187,52 +137,35 @@ class OpenRoadCyL {
                 this.renderMapMarkers();
                 this.updateCounter();
             }
-
         } catch (error) {
-            console.error('Error cargando datos iniciales:', error);
             this.showNotification('Error cargando datos', 'error');
         } finally {
             this.showLoading(false);
         }
     }
 
-    /**
-     * Cargar incidencias con caché inteligente
-     * Green Coding: Sistema de caché para evitar peticiones innecesarias
-     */
     async loadIncidencias(filters = {}) {
-        // Green Coding: Verificar caché
         const now = Date.now();
         if (this.cache.lastFetch && (now - this.cache.lastFetch) < this.cache.cacheDuration && !Object.keys(filters).length) {
-            console.log('Usando caché de incidencias');
             return true;
         }
 
         try {
             const params = new URLSearchParams(filters);
-            // Agregar timestamp para evitar caché del navegador
             params.append('_t', Date.now());
             const response = await this.fetchAPI(`/incidencias.php?action=list&${params}`);
-            
-            console.log('Response from API:', response);
             
             if (response.success) {
                 this.incidencias = response.data;
                 this.cache.lastFetch = now;
-                console.log('Incidencias cargadas:', this.incidencias.length);
-                console.log('Primer incidencia (debug):', this.incidencias[0]);
                 return true;
             }
             return false;
         } catch (error) {
-            console.error('Error cargando incidencias:', error);
             return false;
         }
     }
 
-    /**
-     * Cargar provincias disponibles
-     */
     async loadProvincias() {
         if (this.cache.provincias) return true;
 
@@ -245,14 +178,10 @@ class OpenRoadCyL {
             }
             return false;
         } catch (error) {
-            console.error('Error cargando provincias:', error);
             return false;
         }
     }
 
-    /**
-     * Cargar tipos disponibles
-     */
     async loadTipos() {
         if (this.cache.tipos) return true;
 
@@ -265,52 +194,30 @@ class OpenRoadCyL {
             }
             return false;
         } catch (error) {
-            console.error('Error cargando tipos:', error);
             return false;
         }
     }
 
-    /**
-     * Renderizar marcadores en el mapa
-     * Green Coding: Optimización de marcadores para mejor rendimiento
-     */
     renderMapMarkers() {
-        console.log('renderMapMarkers llamado. Incidencias:', this.incidencias.length);
-        
-        // Verificar que el mapa esté inicializado
         if (!this.map) {
-            console.warn('⚠️ Mapa no inicializado, reintentando...');
             setTimeout(() => this.renderMapMarkers(), 500);
             return;
         }
         
-        // Limpiar marcadores existentes
         this.markers.forEach(marker => this.map.removeLayer(marker));
         this.markers = [];
 
-        // Green Coding: Crear marcadores de forma eficiente
-        this.incidencias.forEach((incidencia, index) => {
-            console.log(`Procesando incidencia ${index}:`, incidencia);
-            
+        this.incidencias.forEach((incidencia) => {
             if (incidencia.lat && incidencia.lng) {
                 const icon = this.getIncidenciaIcon(incidencia.tipo, incidencia.estado);
-                
                 const marker = L.marker([incidencia.lat, incidencia.lng], { icon })
                     .bindPopup(this.createPopupContent(incidencia))
                     .addTo(this.map);
-                
                 this.markers.push(marker);
-            } else {
-                console.warn(`Incidencia sin coordenadas válidas:`, incidencia);
             }
         });
-        
-        console.log('Marcadores agregados al mapa:', this.markers.length);
     }
 
-    /**
-     * Obtener icono según tipo y estado de incidencia
-     */
     getIncidenciaIcon(tipo, estado) {
         const colors = {
             'Accidente': '#e74c3c',
@@ -330,13 +237,10 @@ class OpenRoadCyL {
         });
     }
 
-    /**
-     * Crear contenido del popup
-     */
     createPopupContent(incidencia) {
         const favoriteBtn = this.user ? 
             `<button onclick="app.toggleFavorite(${incidencia.id})" class="btn-favorite">
-                ⭐ Favorito
+                Favorito
             </button>` : '';
 
         return `
@@ -352,9 +256,6 @@ class OpenRoadCyL {
         `;
     }
 
-    /**
-     * Cargar y mostrar estadísticas
-     */
     async loadEstadisticas() {
         this.showLoading(true);
         
@@ -373,21 +274,15 @@ class OpenRoadCyL {
             }
 
         } catch (error) {
-            console.error('Error cargando estadísticas:', error);
             this.showNotification('Error cargando estadísticas', 'error');
         } finally {
             this.showLoading(false);
         }
     }
 
-    /**
-     * Renderizar gráfico de provincias
-     * Green Coding: Configuración optimizada de Chart.js
-     */
     renderProvinciaChart(data) {
         const ctx = document.getElementById('chart-provincias').getContext('2d');
         
-        // Destruir gráfico anterior si existe
         if (this.charts.provincias) {
             this.charts.provincias.destroy();
         }
@@ -424,9 +319,6 @@ class OpenRoadCyL {
         });
     }
 
-    /**
-     * Renderizar gráfico de tipos
-     */
     renderTipoChart(data) {
         const ctx = document.getElementById('chart-tipos').getContext('2d');
         
@@ -465,9 +357,6 @@ class OpenRoadCyL {
         });
     }
 
-    /**
-     * Aplicar filtros
-     */
     async applyFilters() {
         const filters = {};
         
@@ -481,7 +370,6 @@ class OpenRoadCyL {
 
         this.showLoading(true);
         
-        // Invalidar caché cuando se aplican filtros
         this.cache.lastFetch = null;
         const success = await this.loadIncidencias(filters);
         if (success) {
@@ -495,15 +383,11 @@ class OpenRoadCyL {
         this.showLoading(false);
     }
 
-    /**
-     * Limpiar filtros
-     */
     async clearFilters() {
         document.getElementById('filter-provincia').value = '';
         document.getElementById('filter-tipo').value = '';
         document.getElementById('filter-estado').value = '';
         
-        // Green Coding: Invalidar caché para forzar recarga
         this.cache.lastFetch = null;
         await this.loadIncidencias();
         this.renderMapMarkers();
@@ -511,16 +395,11 @@ class OpenRoadCyL {
         this.showNotification('Filtros limpiados', 'success');
     }
 
-    /**
-     * Refrescar datos
-     */
     async refreshData() {
-        // Green Coding: Invalidar caché para forzar actualización
         this.cache.lastFetch = null;
         this.showLoading(true);
         
         try {
-            // Limpiar filtros
             document.getElementById('filter-provincia').value = '';
             document.getElementById('filter-tipo').value = '';
             document.getElementById('filter-estado').value = '';
@@ -535,36 +414,25 @@ class OpenRoadCyL {
                 this.showNotification('Error al actualizar datos', 'error');
             }
         } catch (error) {
-            console.error('Error en refreshData:', error);
             this.showNotification('Error al actualizar', 'error');
         } finally {
             this.showLoading(false);
         }
     }
 
-    /**
-     * Comparar JSONs automáticamente
-     * Ejecuta la comparación automática usando la API backend
-     */
     async compararJSONsAuto() {
         this.showLoading(true);
         
         try {
-            console.log('🔄 Iniciando comparación automática...');
-            
-            // Llamar directamente a la API que hace todo el trabajo
             const response = await this.fetchAPI('/ejecutar_comparacion.php', {
                 method: 'POST'
             });
             
-            console.log('📊 Respuesta de comparación:', response);
-            
             if (response.success) {
-                // Mostrar notificación detallada con resultados
                 const notification = document.createElement('div');
                 notification.className = 'notification success comparison-result';
                 notification.innerHTML = `
-                    <div><strong> Estados actualizados correctamente</strong></div>
+                    <div><strong>Estados actualizados correctamente</strong></div>
                     <div class="result-summary">
                         <div class="result-item">
                             <strong>${response.imported}</strong><br>
@@ -580,11 +448,11 @@ class OpenRoadCyL {
                         </div>
                     </div>
                     <div style="margin-top: 0.5rem; font-size: 0.9rem;">
-                         Total procesadas: ${response.total_processed}
+                        Total procesadas: ${response.total_processed}
                     </div>
                     ${response.files_compared ? `
                     <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">
-                         ${response.files_compared.anterior} → ${response.files_compared.nuevo}
+                        ${response.files_compared.anterior} → ${response.files_compared.nuevo}
                     </div>
                     ` : ''}
                 `;
@@ -592,54 +460,41 @@ class OpenRoadCyL {
                 const container = document.getElementById('notifications');
                 container.appendChild(notification);
                 
-                // Auto-eliminar después de 15 segundos
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.parentNode.removeChild(notification);
                     }
                 }, 15000);
                 
-                // Recargar datos para mostrar los nuevos estados
-                console.log('🔄 Recargando datos del mapa...');
                 await this.refreshData();
                 
             } else {
-                console.error('❌ Error en comparación:', response.error);
-                this.showNotification(`❌ Error: ${response.error}`, 'error');
+                this.showNotification(`Error: ${response.error}`, 'error');
             }
             
         } catch (error) {
-            console.error('❌ Error en comparación automática:', error);
             this.showNotification('Error al ejecutar comparación automática: ' + error.message, 'error');
         } finally {
             this.showLoading(false);
         }
     }
 
-    /**
-     * Mostrar sección específica
-     */
     async showSection(section) {
-        // Actualizar navegación
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(`btn-${section}`).classList.add('active');
 
-        // Ocultar todas las secciones
         document.querySelectorAll('.map-section, .stats-section, .favorites-section').forEach(sec => {
             sec.style.display = 'none';
         });
 
-        // Mostrar sección seleccionada
         const sectionElement = document.getElementById(`${section}-section`);
         sectionElement.style.display = 'block';
 
-        // Cargar datos específicos de la sección
         if (section === 'estadisticas') {
             await this.loadEstadisticas();
         } else if (section === 'favoritos') {
             await this.loadFavoritos();
         } else if (section === 'mapa') {
-            // Green Coding: Solo redimensionar mapa si es necesario
             setTimeout(() => {
                 if (this.map) {
                     this.map.invalidateSize();
@@ -648,9 +503,6 @@ class OpenRoadCyL {
         }
     }
 
-    /**
-     * Cargar favoritos del usuario
-     */
     async loadFavoritos() {
         if (!this.user) {
             document.getElementById('favoritos-list').innerHTML = 
@@ -664,14 +516,10 @@ class OpenRoadCyL {
                 this.renderFavoritos(response.data);
             }
         } catch (error) {
-            console.error('Error cargando favoritos:', error);
             this.showNotification('Error cargando favoritos', 'error');
         }
     }
 
-    /**
-     * Renderizar lista de favoritos
-     */
     renderFavoritos(favoritos) {
         const container = document.getElementById('favoritos-list');
         
@@ -694,9 +542,6 @@ class OpenRoadCyL {
         `).join('');
     }
 
-    /**
-     * Gestión de autenticación
-     */
     showAuthModal(type) {
         document.getElementById('auth-modal').style.display = 'flex';
         this.switchAuthForm(type);
@@ -719,16 +564,11 @@ class OpenRoadCyL {
         }
     }
 
-    /**
-     * Gestión de modal para nuevas incidencias
-     */
     async showIncidenciaModal() {
-        // Cargar provincias si no están en caché
         if (!this.cache.provincias || this.cache.provincias.length === 0) {
             await this.loadProvincias();
         }
         
-        // Llenar el select de provincias
         if (this.cache.provincias) {
             const selectProvincias = document.getElementById('incidencia-provincia');
             selectProvincias.innerHTML = '<option value="">Selecciona una provincia</option>';
@@ -742,7 +582,6 @@ class OpenRoadCyL {
         
         document.getElementById('incidencia-modal').style.display = 'flex';
         
-        // Inicializar mini mapa después de que el modal sea visible
         setTimeout(() => this.initMiniMap(), 100);
     }
 
@@ -752,7 +591,6 @@ class OpenRoadCyL {
         document.getElementById('coord-lat').textContent = '--';
         document.getElementById('coord-lng').textContent = '--';
         
-        // Limpiar mini mapa
         if (this.miniMap) {
             this.miniMap.remove();
             this.miniMap = null;
@@ -760,19 +598,14 @@ class OpenRoadCyL {
         }
     }
 
-    /**
-     * Inicializar mini mapa para seleccionar ubicación
-     */
     initMiniMap() {
         const mapContainer = document.getElementById('ubicacion-map');
         
-        // No inicializar si ya existe o si Leaflet no está disponible
         if (this.miniMap || !L) {
             return;
         }
 
         try {
-            // Crear mini mapa centrado en Castilla y León
             this.miniMap = L.map('ubicacion-map').setView([41.6518, -4.7245], 8);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -780,20 +613,16 @@ class OpenRoadCyL {
                 maxZoom: 18
             }).addTo(this.miniMap);
 
-            // Evento al hacer clic en el mapa
             this.miniMap.on('click', (e) => {
                 const lat = e.latlng.lat;
                 const lng = e.latlng.lng;
 
-                // Actualizar campos ocultos
                 document.getElementById('incidencia-latitud').value = lat;
                 document.getElementById('incidencia-longitud').value = lng;
 
-                // Mostrar coordenadas
                 document.getElementById('coord-lat').textContent = lat.toFixed(4);
                 document.getElementById('coord-lng').textContent = lng.toFixed(4);
 
-                // Agregar/mover marcador
                 if (this.miniMapMarker) {
                     this.miniMapMarker.setLatLng([lat, lng]);
                 } else {
@@ -808,7 +637,7 @@ class OpenRoadCyL {
             });
 
         } catch (error) {
-            console.error('Error inicializando mini mapa:', error);
+            // Error silencioso en inicialización de mini mapa
         }
     }
 
@@ -823,14 +652,9 @@ class OpenRoadCyL {
         const latitud = document.getElementById('incidencia-latitud').value;
         const longitud = document.getElementById('incidencia-longitud').value;
 
-        console.log('Datos a enviar:', {
-            tipo, descripcion, provincia, carretera, pk, latitud, longitud
-        });
-
         // Validar campos obligatorios
         if (!tipo || !descripcion || !provincia || !carretera || !latitud || !longitud) {
             this.showNotification('Por favor completa todos los campos requeridos', 'warning');
-            console.error('Campos faltantes - Tipo:', tipo, 'Desc:', descripcion, 'Prov:', provincia, 'Carr:', carretera, 'Lat:', latitud, 'Lng:', longitud);
             return;
         }
 
@@ -849,14 +673,10 @@ class OpenRoadCyL {
                 estado: 'activa'
             };
 
-            console.log('Payload completo:', JSON.stringify(payload));
-
             const response = await this.fetchAPI('/incidencias.php', {
                 method: 'POST',
                 body: JSON.stringify(payload)
             });
-
-            console.log('Respuesta del servidor:', response);
 
             if (response.success) {
                 this.showNotification('Incidencia reportada correctamente', 'success');
@@ -870,23 +690,18 @@ class OpenRoadCyL {
                 // IMPORTANTE: Forzar recarga sin caché
                 this.cache.lastFetch = null; // Invalidar caché completamente
                 
-                console.log('Forzando recarga de incidencias sin caché...');
                 const incidenciasLoaded = await this.loadIncidencias(); // Sin filtros
                 
                 if (incidenciasLoaded) {
-                    console.log('Total incidencias después de crear:', this.incidencias.length);
                     this.renderMapMarkers();
                     this.updateCounter();
-                    console.log('Mapa actualizado con la nueva incidencia');
                 } else {
                     console.error('Error cargando incidencias después de crear');
                 }
             } else {
                 this.showNotification(response.message || 'Error al reportar incidencia', 'error');
-                console.error('Error en respuesta:', response);
             }
         } catch (error) {
-            console.error('Error reportando incidencia:', error);
             this.showNotification('Error al reportar incidencia: ' + error.message, 'error');
         } finally {
             this.showLoading(false);
@@ -918,7 +733,6 @@ class OpenRoadCyL {
                 this.showNotification(response.message, 'error');
             }
         } catch (error) {
-            console.error('Error en login:', error);
             this.showNotification('Error al iniciar sesión', 'error');
         }
     }
@@ -950,7 +764,6 @@ class OpenRoadCyL {
                 this.showNotification(response.message, 'error');
             }
         } catch (error) {
-            console.error('Error en registro:', error);
             this.showNotification('Error al registrar usuario', 'error');
         }
     }
@@ -962,7 +775,7 @@ class OpenRoadCyL {
             this.updateAuthUI();
             this.showNotification('Sesión cerrada correctamente', 'success');
         } catch (error) {
-            console.error('Error en logout:', error);
+            // Error silencioso en logout
         }
     }
 
@@ -984,9 +797,6 @@ class OpenRoadCyL {
         }
     }
 
-    /**
-     * Gestión de favoritos
-     */
     async toggleFavorite(incidenciaId) {
         if (!this.user) {
             this.showNotification('Inicia sesión para gestionar favoritos', 'warning');
@@ -1009,7 +819,6 @@ class OpenRoadCyL {
                 this.showNotification(response.message, 'error');
             }
         } catch (error) {
-            console.error('Error gestionando favorito:', error);
             this.showNotification('Error al gestionar favorito', 'error');
         }
     }
@@ -1027,19 +836,15 @@ class OpenRoadCyL {
 
             if (response.success) {
                 this.showNotification(response.message, 'success');
-                await this.loadFavoritos(); // Recargar lista
+                await this.loadFavoritos();
             } else {
                 this.showNotification(response.message, 'error');
             }
         } catch (error) {
-            console.error('Error eliminando favorito:', error);
             this.showNotification('Error al eliminar favorito', 'error');
         }
     }
 
-    /**
-     * Utilidades
-     */
     async fetchAPI(endpoint, options = {}) {
         const url = `${this.apiBase}${endpoint}`;
         const defaultOptions = {
@@ -1062,7 +867,6 @@ class OpenRoadCyL {
         const select = document.getElementById(selectId);
         const currentValue = select.value;
         
-        // Mantener la primera opción (placeholder)
         const firstOption = select.children[0];
         select.innerHTML = '';
         select.appendChild(firstOption);
@@ -1074,7 +878,6 @@ class OpenRoadCyL {
             select.appendChild(optionElement);
         });
         
-        // Restaurar valor seleccionado
         select.value = currentValue;
     }
 
@@ -1096,7 +899,6 @@ class OpenRoadCyL {
         
         container.appendChild(notification);
         
-        // Green Coding: Auto-eliminar notificación para evitar acumulación
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.parentNode.removeChild(notification);
@@ -1105,12 +907,10 @@ class OpenRoadCyL {
     }
 }
 
-// Green Coding: Inicializar aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new OpenRoadCyL();
 });
 
-// Green Coding: Limpiar recursos al cerrar la página
 window.addEventListener('beforeunload', () => {
     if (window.app && window.app.charts) {
         Object.values(window.app.charts).forEach(chart => {

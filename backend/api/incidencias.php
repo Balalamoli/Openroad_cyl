@@ -1,11 +1,8 @@
 <?php
 /**
  * OpenRoadCyL - API REST para Incidencias
- * Endpoint principal para obtener datos de incidencias
- * Green Coding: Respuestas optimizadas y caché de headers
  */
 
-// Cargar configuración de seguridad de forma opcional
 $securityLoaded = false;
 if (file_exists('../config/security.php')) {
     try {
@@ -16,7 +13,6 @@ if (file_exists('../config/security.php')) {
     }
 }
 
-// Configurar para que los errores no rompan el JSON
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
@@ -24,32 +20,24 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-
-// Headers de seguridad básicos
 header('X-XSS-Protection: 1; mode=block');
 header('X-Frame-Options: SAMEORIGIN');
 header('X-Content-Type-Options: nosniff');
-
-// No cachear para asegurar datos frescos
 header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: 0');
 
-// Aplicar rate limiting muy permisivo si está disponible
 if ($securityLoaded && class_exists('SecurityConfig')) {
     try {
-        $rateLimitOk = SecurityConfig::checkRateLimit(200, 3600); // 200 requests por hora
+        $rateLimitOk = SecurityConfig::checkRateLimit(200, 3600);
         if (!$rateLimitOk) {
-            // Solo logear, no bloquear
             SecurityConfig::logEvent('rate_limit_warning', ['ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown']);
         }
     } catch (Exception $e) {
-        // Ignorar errores de rate limiting
         error_log("Rate limiting error: " . $e->getMessage());
     }
 }
 
-// Manejar preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
@@ -80,7 +68,6 @@ try {
     }
 
 } catch (Exception $e) {
-    // Log básico de errores
     $logEntry = date('Y-m-d H:i:s') . " - Error en API: " . $e->getMessage() . "\n";
     file_put_contents(__DIR__ . '/../logs/api_errors.log', $logEntry, FILE_APPEND | LOCK_EX);
     
@@ -92,14 +79,9 @@ try {
     ], JSON_UNESCAPED_UNICODE);
 }
 
-/**
- * Maneja peticiones GET
- * Green Coding: Parámetros opcionales para filtrar datos
- */
 function handleGetRequest($controller) {
     $action = $_GET['action'] ?? 'list';
     
-    // Sanitización básica (opcional si SecurityConfig está disponible)
     global $securityLoaded;
     if ($securityLoaded && class_exists('SecurityConfig')) {
         $action = SecurityConfig::sanitizeInput($action);
@@ -109,12 +91,10 @@ function handleGetRequest($controller) {
     
     switch ($action) {
         case 'list':
-            // Filtros opcionales (Green Coding: solo datos necesarios)
             $provincia = $_GET['provincia'] ?? null;
             $tipo = $_GET['tipo'] ?? null;
             $estado = $_GET['estado'] ?? null;
             
-            // Sanitizar filtros si existen
             if ($provincia) {
                 $provincia = $securityLoaded && class_exists('SecurityConfig') ? 
                     SecurityConfig::sanitizeInput($provincia) : 
@@ -172,7 +152,6 @@ function handleGetRequest($controller) {
             return;
     }
     
-    // Green Coding: Respuesta comprimida si es posible
     if (function_exists('gzencode') && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
         header('Content-Encoding: gzip');
         echo gzencode(json_encode($result, JSON_UNESCAPED_UNICODE));
@@ -181,9 +160,6 @@ function handleGetRequest($controller) {
     }
 }
 
-/**
- * Maneja peticiones POST
- */
 function handlePostRequest($controller) {
     $input = json_decode(file_get_contents('php://input'), true);
     
@@ -200,7 +176,6 @@ function handlePostRequest($controller) {
     
     switch ($action) {
         case 'create':
-            // Validar campos requeridos básicos
             $requiredFields = ['tipo', 'descripcion', 'provincia', 'latitud', 'longitud'];
             foreach ($requiredFields as $field) {
                 if (empty($input[$field])) {

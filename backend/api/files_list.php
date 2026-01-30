@@ -1,7 +1,6 @@
 <?php
 /**
  * OpenRoadCyL - API para listar archivos JSON disponibles
- * Endpoint simple para obtener archivos disponibles para comparación
  */
 
 error_reporting(E_ALL);
@@ -36,7 +35,6 @@ try {
         }
     }
     
-    // Ordenar por fecha de modificación (más reciente primero)
     usort($files, function($a, $b) {
         return strtotime($b['modified']) - strtotime($a['modified']);
     });

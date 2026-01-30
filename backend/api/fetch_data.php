@@ -1,15 +1,13 @@
 <?php
 /**
  * OpenRoadCyL - Fetch Data from External API
- * Script para obtener datos de la Junta de CyL con sistema de caché
- * Implementa Green Coding mediante caché inteligente
  */
 
 require_once '../config/database.php';
 
 class DataFetcher {
     private $db;
-    private $cache_duration = 3600; // 1 hora en segundos (Green Coding)
+    private $cache_duration = 3600;
     private $api_url = 'https://datosabiertos.jcyl.es/web/jcyl/risp/es/transporte/incidencias-trafico';
     
     public function __construct() {
@@ -17,10 +15,6 @@ class DataFetcher {
         $this->db = $database->getConnection();
     }
 
-    /**
-     * Verifica si necesita actualizar datos basado en caché
-     * Green Coding: Evita llamadas innecesarias a API externa
-     */
     private function needsUpdate() {
         $query = "SELECT MAX(fecha_actualizacion) as ultima_actualizacion FROM incidencias WHERE fuente = 'jcyl_api'";
         $stmt = $this->db->prepare($query);
@@ -28,7 +22,7 @@ class DataFetcher {
         $result = $stmt->fetch();
         
         if (!$result['ultima_actualizacion']) {
-            return true; // No hay datos, necesita actualizar
+            return true;
         }
         
         $ultima_actualizacion = strtotime($result['ultima_actualizacion']);
@@ -37,13 +31,7 @@ class DataFetcher {
         return ($ahora - $ultima_actualizacion) > $this->cache_duration;
     }
 
-    /**
-     * Simula datos de la API de la Junta de CyL
-     * En producción, aquí iría la llamada real a la API
-     */
     private function fetchFromExternalAPI() {
-        // Simulación de datos de la API de la Junta de CyL
-        // Green Coding: Datos minificados, solo campos esenciales
         return [
             [
                 'tipo' => 'Accidente',
@@ -98,19 +86,13 @@ class DataFetcher {
         ];
     }
 
-    /**
-     * Guarda los datos en la base de datos local
-     * Green Coding: Transacciones para optimizar escritura
-     */
     private function saveToDatabase($data) {
         try {
             $this->db->beginTransaction();
             
-            // Limpiar datos antiguos de la API externa (Green Coding: evita duplicados)
             $delete_query = "DELETE FROM incidencias WHERE fuente = 'jcyl_api'";
             $this->db->prepare($delete_query)->execute();
             
-            // Insertar nuevos datos
             $insert_query = "INSERT INTO incidencias (tipo, descripcion, provincia, carretera, pk, latitud, longitud, estado, fuente) 
                            VALUES (:tipo, :descripcion, :provincia, :carretera, :pk, :latitud, :longitud, :estado, 'jcyl_api')";
             
@@ -139,15 +121,11 @@ class DataFetcher {
         }
     }
 
-    /**
-     * Método principal para actualizar datos
-     * Green Coding: Solo actualiza si es necesario
-     */
     public function updateData() {
         if (!$this->needsUpdate()) {
             return [
                 'status' => 'cached',
-                'message' => 'Datos actuales, usando caché (Green Coding)',
+                'message' => 'Datos actuales, usando caché',
                 'records' => 0
             ];
         }
@@ -172,7 +150,6 @@ class DataFetcher {
     }
 }
 
-// Ejecutar si se llama directamente
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header('Content-Type: application/json');
     
