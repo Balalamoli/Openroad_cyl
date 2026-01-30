@@ -1,2 +1,12 @@
+# Comandos para actualizar datos
+
+## Opción 1: Usar la interfaz web
+- Abrir frontend/index.html
+- Hacer clic en "🔄 Actualizar Estados"
+
+## Opción 2: Usar API directamente
+curl -X POST http://localhost/proyecto_base/backend/api/ejecutar_comparacion.php
+
+## Opción 3: Usar PHP desde línea de comandos
 cd backend
-php auto_comparar.php
+php api/ejecutar_comparacion.php
