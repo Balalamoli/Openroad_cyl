@@ -2,24 +2,6 @@
     {
         "fields": {
             "provincia": "Ávila",
-            "via": "CL-505",
-            "pkinicio": 16.5,
-            "pkfin": 18.5,
-            "tramo": "DE AV-503 A NAVALPERAL DE PINARES (AV-502)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/02 10:15:40",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236662",
-            "numincidencia": 236662,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "Ávila",
             "via": "CL-605",
             "pkinicio": 81,
             "pkfin": 81.2,
@@ -273,36 +255,18 @@
         "fields": {
             "provincia": "Ávila",
             "via": "AV-941",
-            "pkinicio": 6,
-            "pkfin": 7,
+            "pkinicio": 7.5,
+            "pkfin": 24,
             "tramo": "DE VENTA DE LA RASQUILLA (N-502) A AV-932",
             "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/02 10:02:09",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236659",
-            "numincidencia": 236659,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "Ávila",
-            "via": "AV-941",
-            "pkinicio": 7,
-            "pkfin": 26.77,
-            "tramo": "DE VENTA DE LA RASQUILLA (N-502) A AV-932",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
             "fechaalta": "2026\/02\/02 10:30:46",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236669",
             "numincidencia": 236669,
-            "fechamodificacion": ""
+            "fechamodificacion": "2026\/02\/02 11:00:37"
         }
     },
     {
@@ -1191,6 +1155,24 @@
         "fields": {
             "provincia": "Palencia",
             "via": "CL-626",
+            "pkinicio": 174,
+            "pkfin": 176,
+            "tramo": "DE LÍMITE PROVINCIA DE LEÓN A GUARDO (CL-615)",
+            "tipo": "Precaución",
+            "causa": "Otras",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 11:06:18",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236674",
+            "numincidencia": 236674,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "CL-626",
             "pkinicio": 212.2,
             "pkfin": 212.7,
             "tramo": "DE P-227 A CERVERA DE PISUERGA (CL-627)",
@@ -1454,6 +1436,42 @@
             "fechaalta": "2025\/08\/05 12:04:12",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=225854",
             "numincidencia": 225854,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-233",
+            "pkinicio": 5.1,
+            "pkfin": 5.3,
+            "tramo": "DE SOTOBAÑADO (P-230) A BÁSCONES DE OJEDA (P-223)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 11:05:46",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236673",
+            "numincidencia": 236673,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-233",
+            "pkinicio": 8.3,
+            "pkfin": 8.55,
+            "tramo": "DE SOTOBAÑADO (P-230) A BÁSCONES DE OJEDA (P-223)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 10:52:22",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236672",
+            "numincidencia": 236672,
             "fechamodificacion": ""
         }
     },
@@ -2217,7 +2235,7 @@
         "fields": {
             "provincia": "Segovia",
             "via": "CL-601",
-            "pkinicio": 22,
+            "pkinicio": 20,
             "pkfin": 24.07,
             "tramo": "DE LA GRANJA A LÍMITE DE C.A. DE MADRID",
             "tipo": "Precaución",
@@ -2225,9 +2243,9 @@
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/02 09:41:08",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236652",
-            "numincidencia": 236652,
+            "fechaalta": "2026\/02\/02 10:42:59",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236671",
+            "numincidencia": 236671,
             "fechamodificacion": ""
         }
     },
@@ -2288,6 +2306,42 @@
     {
         "fields": {
             "provincia": "Segovia",
+            "via": "SG-114",
+            "pkinicio": 3,
+            "pkfin": 5.6,
+            "tramo": "DE SG-112 A CENTRO INVERNAL DE LA PINILLA ",
+            "tipo": "Precaución",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 11:19:02",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236676",
+            "numincidencia": 236676,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-115",
+            "pkinicio": 5,
+            "pkfin": 8.3,
+            "tramo": "DE CEREZO DE ARRIBA A LA PINILLA ",
+            "tipo": "Precaución",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 11:19:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236677",
+            "numincidencia": 236677,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
             "via": "SG-145",
             "pkinicio": 0.635,
             "pkfin": 0.635,
@@ -2336,6 +2390,24 @@
             "fechaalta": "2026\/01\/27 10:14:57",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=234951",
             "numincidencia": 234951,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-232",
+            "pkinicio": 12.5,
+            "pkfin": 13.5,
+            "tramo": "DE SEPÚLVEDA (SG-241) A SG-205",
+            "tipo": "Precaución",
+            "causa": "Otras",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 11:18:10",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236675",
+            "numincidencia": 236675,
             "fechamodificacion": ""
         }
     },

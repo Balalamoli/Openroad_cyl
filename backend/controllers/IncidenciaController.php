@@ -15,13 +15,11 @@ class IncidenciaController {
 
     /**
      * Lista todas las incidencias con filtros opcionales
-     * Green Coding: Respuesta JSON minificada
      */
     public function listar($provincia = null, $tipo = null, $estado = null) {
         try {
             $incidencias = $this->incidencia->getAll($provincia, $tipo, $estado);
             
-            // Green Coding: Optimizar respuesta, solo campos necesarios para el mapa
             $response = array_map(function($inc) {
                 return [
                     'id' => (int)$inc['id'],
@@ -55,7 +53,6 @@ class IncidenciaController {
 
     /**
      * Obtiene estadísticas por provincia
-     * Green Coding: Datos agregados para reducir transferencia
      */
     public function estadisticasProvincia() {
         try {
@@ -139,7 +136,7 @@ class IncidenciaController {
             $this->incidencia->latitud = $datos['latitud'] ?? null;
             $this->incidencia->longitud = $datos['longitud'] ?? null;
             $this->incidencia->estado = $datos['estado'] ?? 'activa';
-            $this->incidencia->fuente = $datos['fuente'] ?? 'manual'; // Agregar fuente
+            $this->incidencia->fuente = $datos['fuente'] ?? 'manual';
 
             if ($this->incidencia->create()) {
                 return [
@@ -164,7 +161,6 @@ class IncidenciaController {
 
     /**
      * Obtiene las provincias disponibles
-     * Green Coding: Lista única para filtros
      */
     public function getProvincias() {
         try {

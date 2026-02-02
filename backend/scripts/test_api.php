@@ -27,8 +27,8 @@ if ($headers) {
     exit(1);
 }
 
-// Test 2: Descargar una muestra pequeña
-echo PHP_EOL . "Descargando muestra de datos..." . PHP_EOL;
+// Test 2: Descargar datos
+echo PHP_EOL . "Descargando datos..." . PHP_EOL;
 
 $context = stream_context_create([
     'http' => [
@@ -46,35 +46,26 @@ $data = @file_get_contents($apiUrl, false, $context);
 
 if ($data === false) {
     echo "❌ Error descargando datos" . PHP_EOL;
-    $error = error_get_last();
-    echo "Error: " . ($error['message'] ?? 'Desconocido') . PHP_EOL;
     exit(1);
 }
 
 echo "✅ Datos descargados: " . strlen($data) . " bytes" . PHP_EOL;
 
-// Test 3: Verificar que es JSON válido
+// Test 3: Verificar JSON
 $json = json_decode($data, true);
 if (json_last_error() !== JSON_ERROR_NONE) {
     echo "❌ JSON inválido: " . json_last_error_msg() . PHP_EOL;
-    echo "Primeros 200 caracteres:" . PHP_EOL;
-    echo substr($data, 0, 200) . PHP_EOL;
     exit(1);
 }
 
-echo "✅ JSON válido con " . count($json) . " registros" . PHP_EOL;
-
-// Test 4: Verificar estructura de datos
-if (isset($json[0]['fields'])) {
-    echo "✅ Estructura de datos correcta" . PHP_EOL;
-    echo "Campos disponibles en primer registro:" . PHP_EOL;
-    foreach (array_keys($json[0]['fields']) as $field) {
-        echo "  - $field" . PHP_EOL;
-    }
+// Test 4: Verificar estructura
+if (isset($json['incidencias'])) {
+    echo "✅ Estructura correcta con " . count($json['incidencias']) . " incidencias" . PHP_EOL;
+    echo "Título: " . ($json['titulo'] ?? 'N/A') . PHP_EOL;
+    echo "Fecha: " . ($json['fecha'] ?? 'N/A') . PHP_EOL;
 } else {
-    echo "⚠️  Estructura de datos diferente a la esperada" . PHP_EOL;
-    echo "Estructura del primer registro:" . PHP_EOL;
-    print_r(array_keys($json[0] ?? []));
+    echo "❌ Estructura incorrecta" . PHP_EOL;
+    exit(1);
 }
 
-echo PHP_EOL . "=== Test completado ===" . PHP_EOL;
+echo PHP_EOL . "=== Test completado exitosamente ===" . PHP_EOL;

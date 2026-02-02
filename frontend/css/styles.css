@@ -1024,7 +1024,7 @@ body {
     }
 }
 
-/* Responsive Design - Green Coding: Media queries optimizadas */
+/* Responsive Design */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: row;
