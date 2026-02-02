@@ -8,6 +8,18 @@
     box-sizing: border-box;
 }
 
+/* Reset de listas y pseudo-elementos */
+ul, ol, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Reset de pseudo-elementos para evitar puntos no deseados */
+*::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --primary-color: #1F3A5F;
     --secondary-color: #f39c12;
@@ -39,6 +51,9 @@ body {
 
 /* Header */
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background: linear-gradient(135deg, var(--primary-color), #34495e);
     color: white;
     padding: 1rem 0;
@@ -46,6 +61,7 @@ body {
 }
 
 .header-content {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,12 +107,68 @@ body {
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.nav * {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Botón de menú móvil (hamburguesa) - oculto por defecto */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    list-style: none;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    transform-origin: center;
+}
+
+/* Animación del botón hamburguesa cuando está activo */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Menú de navegación - visible por defecto en desktop */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .auth-section {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .user-menu {
@@ -591,11 +663,6 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.counter::before {
-    content: '📊';
-    font-size: 1rem;
-}
-
 /* Botones de popup del mapa */
 .popup-content .btn-favorite {
     margin-top: 0.75rem;
@@ -983,8 +1050,142 @@ body {
 /* Responsive Design - Green Coding: Media queries optimizadas */
 @media (max-width: 768px) {
     .header-content {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 1rem;
+        position: relative;
+        overflow: visible;
+    }
+    
+    .container {
+        position: relative;
+        overflow: visible;
+    }
+    
+    /* Mostrar botón hamburguesa SOLO en móvil */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    /* Ocultar menú por defecto en móvil y convertirlo en desplegable */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 1rem);
+        right: 0;
+        left: auto;
+        width: 280px;
+        max-width: calc(100vw - 2rem);
+        background: linear-gradient(135deg, var(--primary-color), #34495e);
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        gap: 0.75rem;
+        z-index: 1000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0 0 12px 12px;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Mostrar menú cuando está activo en móvil */
+    .nav-menu.active {
+        display: flex;
+        animation: slideDown 0.3s ease;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Ajustar botones de navegación en móvil */
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+        margin: 0.25rem 0;
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        min-height: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-1px);
+    }
+    
+    .nav-btn.active {
+        background: linear-gradient(135deg, var(--secondary-color), #e67e22);
+        border-color: var(--secondary-color);
+        box-shadow: 0 2px 8px rgba(243, 156, 18, 0.4);
+    }
+    
+    /* Ajustar sección de autenticación en móvil */
+    .auth-section {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-auth, .btn-logout {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--secondary-color), #e67e22);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        min-height: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .btn-auth:hover, .btn-logout:hover {
+        background: linear-gradient(135deg, #e67e22, #d35400);
+        transform: translateY(-1px);
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    .user-menu span {
+        text-align: center;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+    }
+    
+    .user-menu .btn-logout {
+        margin-top: 0.5rem;
+        background: linear-gradient(135deg, var(--danger-color), #c0392b);
     }
     
     .filters-grid {
@@ -1015,6 +1216,47 @@ body {
     
     .map-container {
         height: 400px;
+    }
+}
+
+/* Asegurar que en desktop el menú esté siempre visible */
+@media (min-width: 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        background: none;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        border-top: none;
+    }
+    
+    .nav-btn {
+        width: auto;
+        margin: 0;
+    }
+    
+    .auth-section {
+        flex-direction: row;
+        width: auto;
+    }
+    
+    .btn-auth, .btn-logout {
+        width: auto;
+    }
+    
+    .user-menu {
+        flex-direction: row;
+        width: auto;
+    }
+    
+    .user-menu span {
+        background: none;
+        padding: 0;
     }
 }
 
@@ -1546,4 +1788,434 @@ body {
     padding: 0.25rem;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para páginas del footer */
+.page-content {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.page-content h1 {
+    color: #2c5aa0;
+    border-bottom: 3px solid #2c5aa0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.content-section {
+    margin-bottom: 2rem;
+}
+
+.content-section h2 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.content-section h3 {
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.content-section ul {
+    margin-left: 1.5rem;
+}
+
+.content-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos específicos para diferentes páginas */
+.features-grid, .guides-grid, .downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.feature-item, .guide-item, .download-category {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.guide-item h3, .feature-item h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.contact-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.contact-item h3 {
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 2rem 0;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.stats-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    background: #2c5aa0;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.stat-item h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-posts {
+    margin: 2rem 0;
+}
+
+.blog-post {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.blog-post h3 {
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    color: #2c5aa0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.blog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.category-tag {
+    background: #2c5aa0;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.category-tag:hover {
+    background: #1e3f73;
+}
+
+.newsletter-form {
+    margin: 1rem 0;
+}
+
+.newsletter-form .form-group {
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.archive-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.archive-list li {
+    margin-bottom: 0.5rem;
+}
+
+.archive-list a {
+    color: #2c5aa0;
+    text-decoration: none;
+}
+
+.archive-list a:hover {
+    text-decoration: underline;
+}
+
+.download-item {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.download-item h4 {
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+}
+
+.download-info {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.file-type {
+    background: #2c5aa0;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.btn-download {
+    background: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.btn-download:hover {
+    background: #218838;
+}
+
+.btn-download.disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.legal-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+.cookie-category {
+    margin: 2rem 0;
+}
+
+.cookie-table {
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.cookie-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.cookie-table th,
+.cookie-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cookie-table th {
+    background: #2c5aa0;
+    color: white;
+}
+
+.cookie-controls {
+    margin: 1rem 0;
+}
+
+.user-guides {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.user-guide {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.user-guide h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.faq-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.faq-item h3 {
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+}
+
+.alert-type, .notification-channels, .tech-info {
+    margin: 1.5rem 0;
+}
+
+.notification-channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.channel-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.channel-item h3 {
+    color: #2c5aa0;
+    margin-bottom: 0.5rem;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.step {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 4px solid #2c5aa0;
+}
+
+.step h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.stats-category {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.stats-category h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.social-contact {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .features-grid,
+    .guides-grid,
+    .downloads-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .newsletter-form .form-group {
+        flex-direction: column;
+    }
+    
+    .download-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .notification-channels,
+    .steps {
+        grid-template-columns: 1fr;
+    }
 }

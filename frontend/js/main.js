@@ -909,6 +909,42 @@ class OpenRoadCyL {
 
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new OpenRoadCyL();
+    
+    // Funcionalidad del menú móvil
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace de navegación
+        const navButtons = navMenu.querySelectorAll('.nav-btn, .btn-auth, .btn-logout');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Cerrar menú al hacer clic fuera de él
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Cerrar menú al cambiar el tamaño de la ventana (si se vuelve a desktop)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
 });
 
 window.addEventListener('beforeunload', () => {

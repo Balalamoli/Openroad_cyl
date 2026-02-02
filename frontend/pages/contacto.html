@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacta con nosotros - OpenRoadCyL</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../img/logo.png" alt="OpenRoadCYL" class="logo-image">
+                    <div class="logo-text">
+                        <h1>OpenRoadCyL</h1>
+                        <span class="logo-subtitle">CASTILLA Y LEON</span>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-btn">Volver al Inicio</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="page-content">
+                <h1>Contacta con nosotros</h1>
+                
+                <div class="content-section">
+                    <h2>Información de Contacto</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>Oficina Principal</h3>
+                            <p>Avenida de Castilla y León, 123<br>
+                            47001 Valladolid, España</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3>Teléfono</h3>
+                            <p>+34 983 123 456</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <p>info@openroadcyl.es<br>
+                            soporte@openroadcyl.es</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3>Horario de Atención</h3>
+                            <p>Lunes a Viernes: 8:00 - 18:00<br>
+                            Sábados: 9:00 - 14:00<br>
+                            Emergencias 24/7</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Formulario de Contacto</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefono">Teléfono (opcional):</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="asunto">Asunto:</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="soporte">Soporte técnico</option>
+                                <option value="sugerencia">Sugerencia</option>
+                                <option value="colaboracion">Colaboración</option>
+                                <option value="prensa">Prensa</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe tu consulta o sugerencia..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+                <div class="content-section">
+                    <h2>Otros Canales</h2>
+                    <div class="social-contact">
+                        <p>También puedes contactarnos a través de nuestras redes sociales:</p>
+                        <ul>
+                            <li>Twitter: @OpenRoadCyL</li>
+                            <li>LinkedIn: OpenRoadCyL</li>
+                            <li>Facebook: OpenRoadCyL Oficial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Reportar Incidencias</h2>
+                    <p>Para reportar incidencias de tráfico, utiliza directamente nuestra plataforma principal. Si tienes problemas técnicos con el reporte, contacta con nuestro equipo de soporte.</p>
+                    <a href="../index.html" class="btn-primary">Ir a la Plataforma</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 OpenRoadCyL. Todos los derechos reservados.</p>
+                <p>Datos proporcionados por <a href="https://servicios.jcyl.es/" target="_blank">Junta de Castilla y León</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
