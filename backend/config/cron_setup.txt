@@ -1,0 +1,77 @@
+# Configuración de Cron Job para OpenRoadCyL
+# Actualización automática de datos de incidencias
+
+# ============================================
+# INSTRUCCIONES DE INSTALACIÓN
+# ============================================
+
+# 1. Abrir el crontab del usuario:
+#    crontab -e
+
+# 2. Agregar una de las siguientes líneas según la frecuencia deseada:
+
+# --- OPCIONES DE FRECUENCIA ---
+
+# Cada 15 minutos (recomendado para datos en tiempo real):
+*/15 * * * * /usr/bin/php /ruta/completa/al/proyecto/backend/scripts/update_data.php >> /ruta/completa/al/proyecto/backend/logs/cron.log 2>&1
+
+# Cada 30 minutos:
+*/30 * * * * /usr/bin/php /ruta/completa/al/proyecto/backend/scripts/update_data.php >> /ruta/completa/al/proyecto/backend/logs/cron.log 2>&1
+
+# Cada hora:
+0 * * * * /usr/bin/php /ruta/completa/al/proyecto/backend/scripts/update_data.php >> /ruta/completa/al/proyecto/backend/logs/cron.log 2>&1
+
+# Cada 2 horas:
+0 */2 * * * /usr/bin/php /ruta/completa/al/proyecto/backend/scripts/update_data.php >> /ruta/completa/al/proyecto/backend/logs/cron.log 2>&1
+
+# Solo en horario laboral (cada 30 min de 8:00 a 20:00):
+*/30 8-20 * * * /usr/bin/php /ruta/completa/al/proyecto/backend/scripts/update_data.php >> /ruta/completa/al/proyecto/backend/logs/cron.log 2>&1
+
+# ============================================
+# EJEMPLO COMPLETO PARA WINDOWS (Task Scheduler)
+# ============================================
+
+# 1. Abrir "Programador de tareas" (Task Scheduler)
+# 2. Crear tarea básica
+# 3. Configurar:
+#    - Nombre: "OpenRoadCyL Data Update"
+#    - Desencadenador: Repetir cada 15 minutos
+#    - Acción: Iniciar programa
+#    - Programa: C:\xampp\php\php.exe
+#    - Argumentos: C:\ruta\completa\al\proyecto\backend\scripts\update_data.php
+#    - Directorio: C:\ruta\completa\al\proyecto\backend\scripts
+
+# ============================================
+# VERIFICACIÓN
+# ============================================
+
+# Para verificar que el cron está funcionando:
+# 1. Revisar el archivo de log: backend/logs/cron.log
+# 2. Revisar el log del actualizador: backend/logs/data_updater.log
+# 3. Verificar que los archivos JSON se actualizan
+
+# ============================================
+# COMANDOS ÚTILES
+# ============================================
+
+# Ver cron jobs activos:
+# crontab -l
+
+# Editar cron jobs:
+# crontab -e
+
+# Ver logs del sistema cron:
+# tail -f /var/log/cron
+
+# Ejecutar manualmente para probar:
+# php /ruta/completa/al/proyecto/backend/scripts/update_data.php
+
+# ============================================
+# NOTAS IMPORTANTES
+# ============================================
+
+# - Reemplazar "/ruta/completa/al/proyecto" con la ruta real de tu proyecto
+# - Asegurarse de que PHP esté en el PATH o usar la ruta completa a php
+# - Los logs se guardan automáticamente para monitoreo
+# - El script maneja errores y no interrumpe el sistema si falla
+# - Se recomienda empezar con una frecuencia baja (cada hora) y ajustar según necesidades

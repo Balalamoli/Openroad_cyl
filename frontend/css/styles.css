@@ -715,29 +715,6 @@ body {
     box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
 }
 
-.btn-warning {
-    background: linear-gradient(135deg, var(--warning-color), #e67e22);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: 600;
-    font-size: 0.9rem;
-    box-shadow: 0 3px 12px rgba(243, 156, 18, 0.3);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.btn-warning:hover {
-    background: linear-gradient(135deg, #e67e22, #d35400);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
-}
-
 .btn-danger {
     background: linear-gradient(135deg, var(--danger-color), #c0392b);
     color: white;
@@ -1625,22 +1602,6 @@ body {
         font-size: 1rem;
     }
 }
-/* Estilos para comparación de JSONs */
-.btn-warning {
-    background-color: var(--warning-color);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-    font-size: 0.9rem;
-}
-
-.btn-warning:hover {
-    background-color: #e67e22;
-    transform: translateY(-2px);
-}
 
 .modal-description {
     color: #666;
@@ -1769,25 +1730,10 @@ body {
     font-weight: bold;
 }
 
-/* Mejoras en notificaciones para mostrar resultados de comparación */
-.notification.comparison-result {
+/* Mejoras en notificaciones para mostrar resultados de actualización */
+.notification.data-update-result {
     max-width: 500px;
     padding: 1rem 1.5rem;
-}
-
-.notification.comparison-result .result-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.notification.comparison-result .result-item {
-    text-align: center;
-    padding: 0.25rem;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Estilos para páginas del footer */

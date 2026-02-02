@@ -68,7 +68,7 @@ class ImporterJCyL {
         $oldData = json_decode(file_get_contents($oldJsonPath), true);
         $newData = json_decode(file_get_contents($newJsonPath), true);
 
-        if (!$oldData || !$newData || !isset($oldData['incidencias']) || !isset($newData['incidencias'])) {
+        if (!$oldData || !$newData) {
             return [
                 'success' => false,
                 'error' => 'Formato de JSON inválido en uno o ambos archivos',
@@ -78,9 +78,23 @@ class ImporterJCyL {
             ];
         }
 
+        // Extraer incidencias según el formato (nuevo formato directo o formato con 'incidencias')
+        $oldIncidencias = $this->extractIncidencias($oldData);
+        $newIncidencias = $this->extractIncidencias($newData);
+
+        if (!$oldIncidencias || !$newIncidencias) {
+            return [
+                'success' => false,
+                'error' => 'No se pudieron extraer las incidencias de los archivos JSON',
+                'imported' => 0,
+                'updated' => 0,
+                'resolved' => 0
+            ];
+        }
+
         // Crear índices para comparación rápida
-        $oldIndex = $this->createIncidenciaIndex($oldData['incidencias']);
-        $newIndex = $this->createIncidenciaIndex($newData['incidencias']);
+        $oldIndex = $this->createIncidenciaIndex($oldIncidencias);
+        $newIndex = $this->createIncidenciaIndex($newIncidencias);
 
         $stats = [
             'imported' => 0,  // Nuevas incidencias (solo en nuevo JSON)
@@ -147,6 +161,24 @@ class ImporterJCyL {
     }
 
     /**
+     * Extraer incidencias de los datos JSON según el formato
+     * Maneja tanto el formato nuevo (array directo) como el formato anterior (con clave 'incidencias')
+     */
+    private function extractIncidencias($data) {
+        // Si es un array directo (nuevo formato)
+        if (is_array($data) && isset($data[0]) && isset($data[0]['fields'])) {
+            return $data;
+        }
+        
+        // Si tiene la clave 'incidencias' (formato anterior)
+        if (isset($data['incidencias']) && is_array($data['incidencias'])) {
+            return $data['incidencias'];
+        }
+        
+        return null;
+    }
+
+    /**
      * Crear índice único para cada incidencia basado en campos clave
      * Esto permite identificar la misma incidencia entre diferentes JSONs
      */
@@ -166,13 +198,16 @@ class ImporterJCyL {
      * Generar clave única para identificar una incidencia
      */
     private function generateIncidenciaKey($incidencia) {
+        // Determinar si es formato nuevo (con 'fields') o formato anterior (directo)
+        $data = isset($incidencia['fields']) ? $incidencia['fields'] : $incidencia;
+        
         $parts = [
-            $incidencia['Provincia'] ?? '',
-            $incidencia['Via'] ?? '',
-            $incidencia['PKInicio'] ?? '',
-            $incidencia['PKFin'] ?? '',
-            $incidencia['Tipo'] ?? '',
-            $incidencia['Causa'] ?? ''
+            $data['provincia'] ?? $data['Provincia'] ?? '',
+            $data['via'] ?? $data['Via'] ?? '',
+            $data['pkinicio'] ?? $data['PKInicio'] ?? '',
+            $data['pkfin'] ?? $data['PKFin'] ?? '',
+            $data['tipo'] ?? $data['Tipo'] ?? '',
+            $data['causa'] ?? $data['Causa'] ?? ''
         ];
         
         return md5(implode('|', $parts));
@@ -183,21 +218,30 @@ class ImporterJCyL {
      */
     private function createIncidenciaFromJCyL($incJCyL, $estado = 'activa') {
         try {
+            // Determinar si es formato nuevo (con 'fields') o formato anterior (directo)
+            $data = isset($incJCyL['fields']) ? $incJCyL['fields'] : $incJCyL;
+            
             // Obtener coordenadas (con timeout para no bloquear)
-            $coords = $this->getCoordinatesWithTimeout($incJCyL['Via'], $incJCyL['Provincia']);
+            $coords = $this->getCoordinatesWithTimeout(
+                $data['via'] ?? $data['Via'] ?? '', 
+                $data['provincia'] ?? $data['Provincia'] ?? ''
+            );
             
             // Mapear tipo
-            $tipo = $this->mapTypeFromJCyL($incJCyL['Tipo'], $incJCyL['Causa']);
+            $tipo = $this->mapTypeFromJCyL(
+                $data['tipo'] ?? $data['Tipo'] ?? '', 
+                $data['causa'] ?? $data['Causa'] ?? ''
+            );
             
             // Construir descripción
-            $descripcion = $this->buildDescriptionFromJCyL($incJCyL);
+            $descripcion = $this->buildDescriptionFromJCyL($data);
             
             // Crear incidencia
             $this->incidencia->tipo = $tipo;
             $this->incidencia->descripcion = $descripcion;
-            $this->incidencia->provincia = $incJCyL['Provincia'];
-            $this->incidencia->carretera = $incJCyL['Via'];
-            $this->incidencia->pk = $incJCyL['PKInicio'] ?? null;
+            $this->incidencia->provincia = $data['provincia'] ?? $data['Provincia'] ?? '';
+            $this->incidencia->carretera = $data['via'] ?? $data['Via'] ?? '';
+            $this->incidencia->pk = $data['pkinicio'] ?? $data['PKInicio'] ?? null;
             $this->incidencia->latitud = $coords['lat'];
             $this->incidencia->longitud = $coords['lng'];
             $this->incidencia->estado = $estado;
@@ -216,6 +260,9 @@ class ImporterJCyL {
      */
     private function updateIncidenciaState($incJCyL, $nuevoEstado) {
         try {
+            // Determinar si es formato nuevo (con 'fields') o formato anterior (directo)
+            $data = isset($incJCyL['fields']) ? $incJCyL['fields'] : $incJCyL;
+            
             // Buscar incidencia existente por campos únicos
             $sql = "UPDATE incidencias SET 
                         estado = ?, 
@@ -229,9 +276,9 @@ class ImporterJCyL {
             $stmt = $this->pdo->prepare($sql);
             $result = $stmt->execute([
                 $nuevoEstado,
-                $incJCyL['Provincia'],
-                $incJCyL['Via'],
-                $incJCyL['PKInicio'] ?? null
+                $data['provincia'] ?? $data['Provincia'] ?? '',
+                $data['via'] ?? $data['Via'] ?? '',
+                $data['pkinicio'] ?? $data['PKInicio'] ?? null
             ]);
             
             return $result && $stmt->rowCount() > 0;
@@ -333,10 +380,14 @@ class ImporterJCyL {
     private function buildDescriptionFromJCyL($inc) {
         $parts = [];
         
-        if (!empty($inc['Tramo'])) $parts[] = $inc['Tramo'];
-        if (!empty($inc['Causa'])) $parts[] = "Causa: " . $inc['Causa'];
-        if (!empty($inc['Observaciones']) && $inc['Observaciones'] !== '--') {
-            $parts[] = $inc['Observaciones'];
+        $tramo = $inc['tramo'] ?? $inc['Tramo'] ?? '';
+        $causa = $inc['causa'] ?? $inc['Causa'] ?? '';
+        $observaciones = $inc['observaciones'] ?? $inc['Observaciones'] ?? '';
+        
+        if (!empty($tramo)) $parts[] = $tramo;
+        if (!empty($causa)) $parts[] = "Causa: " . $causa;
+        if (!empty($observaciones) && $observaciones !== '--') {
+            $parts[] = $observaciones;
         }
         
         return substr(implode('. ', $parts), 0, 500);

@@ -81,10 +81,10 @@ class OpenRoadCyL {
         document.getElementById('btn-aplicar-filtros').addEventListener('click', () => this.applyFilters());
         document.getElementById('btn-limpiar-filtros').addEventListener('click', () => this.clearFilters());
         
-        // Comparar JSONs automáticamente
-        const btnCompararAuto = document.getElementById('btn-comparar-auto');
-        if (btnCompararAuto) {
-            btnCompararAuto.addEventListener('click', () => this.compararJSONsAuto());
+        // Actualizar datos desde la API
+        const btnUpdateData = document.getElementById('btn-update-data');
+        if (btnUpdateData) {
+            btnUpdateData.addEventListener('click', () => this.updateDataFromAPI());
         }
 
         document.getElementById('auth-modal').addEventListener('click', (e) => {
@@ -294,8 +294,8 @@ class OpenRoadCyL {
                 datasets: [{
                     label: 'Total Incidencias',
                     data: data.map(item => item.total),
-                    backgroundColor: 'rgba(44, 90, 160, 0.8)',
-                    borderColor: 'rgba(44, 90, 160, 1)',
+                    backgroundColor: 'rgba(52, 152, 219, 0.8)', // Azul consistente con el esquema
+                    borderColor: 'rgba(52, 152, 219, 1)',
                     borderWidth: 1
                 }]
             },
@@ -326,13 +326,18 @@ class OpenRoadCyL {
             this.charts.tipos.destroy();
         }
 
-        const colors = [
-            'rgba(231, 76, 60, 0.8)',
-            'rgba(243, 156, 18, 0.8)',
-            'rgba(52, 152, 219, 0.8)',
-            'rgba(155, 89, 182, 0.8)',
-            'rgba(46, 204, 113, 0.8)'
-        ];
+        // Usar los mismos colores que en el mapa
+        const mapColors = {
+            'Accidente': 'rgba(231, 76, 60, 0.8)',
+            'Obras': 'rgba(243, 156, 18, 0.8)',
+            'Meteorológica': 'rgba(52, 152, 219, 0.8)',
+            'Retención': 'rgba(155, 89, 182, 0.8)'
+        };
+
+        // Mapear colores según los tipos de datos recibidos
+        const backgroundColor = data.map(item => 
+            mapColors[item.tipo] || 'rgba(149, 165, 166, 0.8)'
+        );
 
         this.charts.tipos = new Chart(ctx, {
             type: 'doughnut',
@@ -340,7 +345,7 @@ class OpenRoadCyL {
                 labels: data.map(item => item.tipo),
                 datasets: [{
                     data: data.map(item => item.total),
-                    backgroundColor: colors.slice(0, data.length),
+                    backgroundColor: backgroundColor,
                     borderWidth: 2,
                     borderColor: '#fff'
                 }]
@@ -420,41 +425,25 @@ class OpenRoadCyL {
         }
     }
 
-    async compararJSONsAuto() {
+    async updateDataFromAPI() {
         this.showLoading(true);
         
         try {
-            const response = await this.fetchAPI('/ejecutar_comparacion.php', {
+            const response = await this.fetchAPI('/update_data.php', {
                 method: 'POST'
             });
             
             if (response.success) {
                 const notification = document.createElement('div');
-                notification.className = 'notification success comparison-result';
+                notification.className = 'notification success data-update-result';
                 notification.innerHTML = `
-                    <div><strong>Estados actualizados correctamente</strong></div>
-                    <div class="result-summary">
-                        <div class="result-item">
-                            <strong>${response.imported}</strong><br>
-                            <small>Nuevas (Activas)</small>
-                        </div>
-                        <div class="result-item">
-                            <strong>${response.updated}</strong><br>
-                            <small>En Proceso</small>
-                        </div>
-                        <div class="result-item">
-                            <strong>${response.resolved}</strong><br>
-                            <small>Resueltas</small>
-                        </div>
-                    </div>
+                    <div><strong>Datos actualizados desde la API</strong></div>
                     <div style="margin-top: 0.5rem; font-size: 0.9rem;">
-                        Total procesadas: ${response.total_processed}
+                        📊 Registros procesados: ${response.records || 'N/A'}
                     </div>
-                    ${response.files_compared ? `
                     <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">
-                        ${response.files_compared.anterior} → ${response.files_compared.nuevo}
+                        Actualizado: ${response.timestamp}
                     </div>
-                    ` : ''}
                 `;
                 
                 const container = document.getElementById('notifications');
@@ -464,16 +453,17 @@ class OpenRoadCyL {
                     if (notification.parentNode) {
                         notification.parentNode.removeChild(notification);
                     }
-                }, 15000);
+                }, 10000);
                 
+                // Refrescar datos después de la actualización
                 await this.refreshData();
                 
             } else {
-                this.showNotification(`Error: ${response.error}`, 'error');
+                this.showNotification(`Error al actualizar datos: ${response.error}`, 'error');
             }
             
         } catch (error) {
-            this.showNotification('Error al ejecutar comparación automática: ' + error.message, 'error');
+            this.showNotification('Error al conectar con el servicio de actualización: ' + error.message, 'error');
         } finally {
             this.showLoading(false);
         }
