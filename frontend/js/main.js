@@ -4,8 +4,22 @@
 
 class OpenRoadCyL {
     constructor() {
+        // CONFIGURACIÓN MANUAL - Cambia 'openroadcyl' por el nombre de tu carpeta de proyecto
+        const projectName = 'Openroad_cyl'; // <-- CAMBIA ESTO por el nombre de tu carpeta
         const path = window.location.pathname;
-        this.apiBase = path.includes('/proyecto_base/') ? '/proyecto_base/backend/api' : '/backend/api';
+        
+        // Si estamos en /frontend/, usar la carpeta del proyecto
+        if (path.includes('/frontend/')) {
+            this.apiBase = `/${projectName}/backend/api`;
+        } else {
+            // Detectar automáticamente si hay un nombre de proyecto en la URL
+            const pathParts = path.split('/').filter(part => part);
+            if (pathParts.length > 0 && pathParts[0] !== 'frontend') {
+                this.apiBase = `/${pathParts[0]}/backend/api`;
+            } else {
+                this.apiBase = `/${projectName}/backend/api`;
+            }
+        }
         this.map = null;
         this.markers = [];
         this.incidencias = [];
@@ -113,7 +127,7 @@ class OpenRoadCyL {
 
     async checkUserSession() {
         try {
-            const response = await this.fetchAPI('/usuarios.php?action=session');
+            const response = await this.fetchAPI('usuarios.php?action=session');
             if (response.success && response.authenticated) {
                 this.user = response.user;
                 this.updateAuthUI();
@@ -153,7 +167,7 @@ class OpenRoadCyL {
         try {
             const params = new URLSearchParams(filters);
             params.append('_t', Date.now());
-            const response = await this.fetchAPI(`/incidencias.php?action=list&${params}`);
+            const response = await this.fetchAPI(`incidencias.php?action=list&${params}`);
             
             if (response.success) {
                 this.incidencias = response.data;
@@ -170,7 +184,7 @@ class OpenRoadCyL {
         if (this.cache.provincias) return true;
 
         try {
-            const response = await this.fetchAPI('/incidencias.php?action=provincias');
+            const response = await this.fetchAPI('incidencias.php?action=provincias');
             if (response.success) {
                 this.cache.provincias = response.data;
                 this.populateSelect('filter-provincia', response.data);
@@ -186,7 +200,7 @@ class OpenRoadCyL {
         if (this.cache.tipos) return true;
 
         try {
-            const response = await this.fetchAPI('/incidencias.php?action=tipos');
+            const response = await this.fetchAPI('incidencias.php?action=tipos');
             if (response.success) {
                 this.cache.tipos = response.data;
                 this.populateSelect('filter-tipo', response.data);
@@ -261,8 +275,8 @@ class OpenRoadCyL {
         
         try {
             const [provinciaStats, tipoStats] = await Promise.all([
-                this.fetchAPI('/incidencias.php?action=stats-provincia'),
-                this.fetchAPI('/incidencias.php?action=stats-tipo')
+                this.fetchAPI('incidencias.php?action=stats-provincia'),
+                this.fetchAPI('incidencias.php?action=stats-tipo')
             ]);
 
             if (provinciaStats.success) {
@@ -429,7 +443,7 @@ class OpenRoadCyL {
         this.showLoading(true);
         
         try {
-            const response = await this.fetchAPI('/update_data.php', {
+            const response = await this.fetchAPI('update_data.php', {
                 method: 'POST'
             });
             
@@ -501,7 +515,7 @@ class OpenRoadCyL {
         }
 
         try {
-            const response = await this.fetchAPI('/usuarios.php?action=favoritos');
+            const response = await this.fetchAPI('usuarios.php?action=favoritos');
             if (response.success) {
                 this.renderFavoritos(response.data);
             }
@@ -663,7 +677,7 @@ class OpenRoadCyL {
                 estado: 'activa'
             };
 
-            const response = await this.fetchAPI('/incidencias.php', {
+            const response = await this.fetchAPI('incidencias.php', {
                 method: 'POST',
                 body: JSON.stringify(payload)
             });
@@ -705,7 +719,7 @@ class OpenRoadCyL {
         const password = document.getElementById('login-password').value;
 
         try {
-            const response = await this.fetchAPI('/usuarios.php', {
+            const response = await this.fetchAPI('usuarios.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     action: 'login',
@@ -735,7 +749,7 @@ class OpenRoadCyL {
         const password = document.getElementById('register-password').value;
 
         try {
-            const response = await this.fetchAPI('/usuarios.php', {
+            const response = await this.fetchAPI('usuarios.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     action: 'register',
@@ -760,7 +774,7 @@ class OpenRoadCyL {
 
     async logout() {
         try {
-            await this.fetchAPI('/usuarios.php?action=logout');
+            await this.fetchAPI('usuarios.php?action=logout');
             this.user = null;
             this.updateAuthUI();
             this.showNotification('Sesión cerrada correctamente', 'success');
@@ -794,7 +808,7 @@ class OpenRoadCyL {
         }
 
         try {
-            const response = await this.fetchAPI('/usuarios.php', {
+            const response = await this.fetchAPI('usuarios.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     action: 'favorito',
@@ -815,7 +829,7 @@ class OpenRoadCyL {
 
     async removeFavorite(incidenciaId) {
         try {
-            const response = await this.fetchAPI('/usuarios.php', {
+            const response = await this.fetchAPI('usuarios.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     action: 'favorito',
@@ -836,7 +850,21 @@ class OpenRoadCyL {
     }
 
     async fetchAPI(endpoint, options = {}) {
-        const url = `${this.apiBase}${endpoint}`;
+        // Construir la URL correctamente
+        let url;
+        if (endpoint.startsWith('http')) {
+            // URL absoluta
+            url = endpoint;
+        } else if (endpoint.startsWith('/')) {
+            // URL relativa desde la raíz
+            url = endpoint;
+        } else {
+            // Endpoint relativo, usar apiBase
+            url = `${this.apiBase}/${endpoint}`;
+        }
+        
+        console.log('Fetching URL:', url); // Para debug
+        
         const defaultOptions = {
             headers: {
                 'Content-Type': 'application/json',

@@ -253,24 +253,6 @@
     },
     {
         "fields": {
-            "provincia": "Ávila",
-            "via": "AV-941",
-            "pkinicio": 7.5,
-            "pkfin": 24,
-            "tramo": "DE VENTA DE LA RASQUILLA (N-502) A AV-932",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/02 10:30:46",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236669",
-            "numincidencia": 236669,
-            "fechamodificacion": "2026\/02\/02 11:00:37"
-        }
-    },
-    {
-        "fields": {
             "provincia": "Burgos",
             "via": "CL-620",
             "pkinicio": 0,
@@ -560,24 +542,6 @@
     {
         "fields": {
             "provincia": "Burgos",
-            "via": "BU-820",
-            "pkinicio": 41,
-            "pkfin": 44,
-            "tramo": "DE PINEDA DE LA SIERRA A RIOCAVADO DE LA SIERRA (PTO. DEL MANQUILLO)",
-            "tipo": "Precaución",
-            "causa": "Hielo",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/01\/31 13:35:32",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236598",
-            "numincidencia": 236598,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "Burgos",
             "via": "BU-923",
             "pkinicio": 24,
             "pkfin": 24.85,
@@ -626,6 +590,24 @@
             "fechaalta": "2025\/11\/07 09:16:55",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=227097",
             "numincidencia": 227097,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "León",
+            "via": "CL-626",
+            "pkinicio": 56.28,
+            "pkfin": 79,
+            "tramo": "DE LE-473 A LA MAGDALENA (LE-420)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 11:56:21",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236681",
+            "numincidencia": 236681,
             "fechamodificacion": ""
         }
     },
@@ -902,6 +884,24 @@
     {
         "fields": {
             "provincia": "León",
+            "via": "LE-473",
+            "pkinicio": 0,
+            "pkfin": 23,
+            "tramo": "DE N-630 (POLA DE GORDÓN) A CL-626 (PANTANO DE LUNA)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 11:56:53",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236682",
+            "numincidencia": 236682,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "León",
             "via": "LE-493",
             "pkinicio": 48.4,
             "pkfin": 48.4,
@@ -1046,6 +1046,24 @@
     {
         "fields": {
             "provincia": "Palencia",
+            "via": "A-231",
+            "pkinicio": 100.65,
+            "pkfin": 101.5,
+            "tramo": "DE VILLAHERREROS (P-236) A OSORNO (A-67)",
+            "tipo": "Precaución",
+            "causa": "Obras",
+            "calzada": "Derecha",
+            "rutaalt": "",
+            "observaciones": "Corte de carril derecho en calzada derecha",
+            "fechaalta": "2026\/02\/02 11:43:28",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236678",
+            "numincidencia": 236678,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
             "via": "CL-613",
             "pkinicio": 0,
             "pkfin": 1.87,
@@ -1155,7 +1173,7 @@
         "fields": {
             "provincia": "Palencia",
             "via": "CL-626",
-            "pkinicio": 174,
+            "pkinicio": 173,
             "pkfin": 176,
             "tramo": "DE LÍMITE PROVINCIA DE LEÓN A GUARDO (CL-615)",
             "tipo": "Precaución",
@@ -1163,9 +1181,9 @@
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/02 11:06:18",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236674",
-            "numincidencia": 236674,
+            "fechaalta": "2026\/02\/02 12:35:17",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236690",
+            "numincidencia": 236690,
             "fechamodificacion": ""
         }
     },
@@ -1407,6 +1425,24 @@
         "fields": {
             "provincia": "Palencia",
             "via": "P-232",
+            "pkinicio": 2.35,
+            "pkfin": 2.55,
+            "tramo": "DE N-611 A CALAHORRA DE BOEDO (P-232)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 11:48:01",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236680",
+            "numincidencia": 236680,
+            "fechamodificacion": "2026\/02\/02 11:49:48"
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-232",
             "pkinicio": 7.75,
             "pkfin": 12.02,
             "tramo": "DE N-611 A CALAHORRA DE BOEDO (P-232)",
@@ -1490,6 +1526,24 @@
             "fechaalta": "2026\/02\/02 08:50:30",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236633",
             "numincidencia": 236633,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-242",
+            "pkinicio": 6.7,
+            "pkfin": 6.9,
+            "tramo": "DE SAN MAMÉS DE CAMPOS (N-120) A BAHÍLLO (P-240)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/02 11:43:55",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236679",
+            "numincidencia": 236679,
             "fechamodificacion": ""
         }
     },
@@ -2289,6 +2343,24 @@
         "fields": {
             "provincia": "Segovia",
             "via": "SG-112",
+            "pkinicio": 3.7,
+            "pkfin": 5.42,
+            "tramo": "DE RIAZA (N-110) A RIOFRÍO DE RIAZA",
+            "tipo": "Precaución",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 12:09:07",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236684",
+            "numincidencia": 236684,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-112",
             "pkinicio": 5.42,
             "pkfin": 12.46,
             "tramo": "DE RIOFRÍO DE RIAZA A LÍMITE DE C.A. DE CASTILLA LA MANCHA",
@@ -2307,17 +2379,35 @@
         "fields": {
             "provincia": "Segovia",
             "via": "SG-114",
-            "pkinicio": 3,
-            "pkfin": 5.6,
+            "pkinicio": 0,
+            "pkfin": 3.5,
             "tramo": "DE SG-112 A CENTRO INVERNAL DE LA PINILLA ",
             "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/02 11:19:02",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236676",
-            "numincidencia": 236676,
+            "fechaalta": "2026\/02\/02 12:08:25",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236683",
+            "numincidencia": 236683,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-114",
+            "pkinicio": 3.5,
+            "pkfin": 5.6,
+            "tramo": "DE SG-112 A CENTRO INVERNAL DE LA PINILLA ",
+            "tipo": "Cadenas",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/02 12:09:51",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236686",
+            "numincidencia": 236686,
             "fechamodificacion": ""
         }
     },
@@ -2396,18 +2486,18 @@
     {
         "fields": {
             "provincia": "Segovia",
-            "via": "SG-232",
-            "pkinicio": 12.5,
-            "pkfin": 13.5,
-            "tramo": "DE SEPÚLVEDA (SG-241) A SG-205",
+            "via": "SG-205",
+            "pkinicio": 58.9,
+            "pkfin": 63.9,
+            "tramo": "DE HONTALBILLA (SG-211) A CUÉLLAR (A-601) ",
             "tipo": "Precaución",
             "causa": "Otras",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/02 11:18:10",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236675",
-            "numincidencia": 236675,
+            "fechaalta": "2026\/02\/02 12:29:06",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236689",
+            "numincidencia": 236689,
             "fechamodificacion": ""
         }
     },

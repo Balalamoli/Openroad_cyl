@@ -23,8 +23,8 @@ $result = $updater->updateData();
 
 // Mostrar resultado
 if ($result['success']) {
-    echo "✅ ÉXITO: " . $result['message'] . PHP_EOL;
-    echo "📊 Registros procesados: " . $result['records'] . PHP_EOL;
+    echo " ÉXITO: " . $result['message'] . PHP_EOL;
+    echo " Registros procesados: " . $result['records'] . PHP_EOL;
 } else {
     echo "❌ ERROR: " . $result['error'] . PHP_EOL;
     exit(1); // Código de error para cron
