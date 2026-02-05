@@ -1,248 +1,206 @@
-# 📚 Documentación OpenRoadCyL
+# � OpenRoadCyL - Sistema de Gestión de Incidencias de Tráfico
 
-## 🎯 **Resumen del Sistema**
+## 🎯 **¿Qué es OpenRoadCyL?**
 
-OpenRoadCyL es una aplicación web completa para la gestión y visualización de incidencias de tráfico en Castilla y León. El sistema se integra con la API oficial de Datos Abiertos de la Junta de Castilla y León para proporcionar información actualizada en tiempo real sobre el estado de las carreteras.
+OpenRoadCyL es una aplicación web completa para la **gestión y visualización de incidencias de tráfico en Castilla y León**. El sistema se integra con la API oficial de Datos Abiertos de la Junta de Castilla y León para proporcionar información actualizada en tiempo real sobre el estado de las carreteras.
 
-## 📁 **Estructura de la Documentación**
+## ⚡ **Instalación Rápida**
 
-### **01. Frontend - Interfaz de Usuario**
-**Archivo:** [`01-FRONTEND-INTERFAZ.md`](01-FRONTEND-INTERFAZ.md)
+### **Requisitos:**
+- PHP 7.4+ 
+- MySQL 5.7+
+- Apache/Nginx
 
-**Contenido:**
-- 🎨 Arquitectura del frontend (HTML, CSS, JavaScript)
-- 🗺️ Sistema de mapas interactivos con Leaflet
-- 📊 Gráficos estadísticos con Chart.js
-- 🔄 Gestión de datos y cache inteligente
-- 📱 Diseño responsive y menú móvil
-- 🔗 Integración con APIs del backend
-
-**Tecnologías:** HTML5, CSS3, JavaScript ES6+, Leaflet, Chart.js
-
----
-
-### **02. Backend - APIs y Controladores**
-**Archivo:** [`02-BACKEND-APIS.md`](02-BACKEND-APIS.md)
-
-**Contenido:**
-- 🌐 Endpoints REST para incidencias, usuarios y actualización
-- 🎛️ Controladores de lógica de negocio
-- 🗄️ Modelos de datos y acceso a base de datos
-- 🔐 Sistema de autenticación y autorización
-- 📊 Generación de estadísticas y reportes
-- 🛡️ Medidas de seguridad implementadas
-
-**Tecnologías:** PHP 7.4+, MySQL, PDO, REST APIs
-
----
-
-### **03. Sistema de Actualización Automática**
-**Archivo:** [`03-SISTEMA-ACTUALIZACION.md`](03-SISTEMA-ACTUALIZACION.md)
-
-**Contenido:**
-- 🔄 Descarga automática de datos desde API JCyL
-- 🧠 Comparación inteligente de JSONs
-- 📊 Determinación automática de estados de incidencias
-- 🌍 Sistema de geocodificación con cache
-- ⚡ Optimizaciones de rendimiento
-- 📈 Métricas y monitoreo del sistema
-
-**Características:** Actualización cada 30 minutos, comparación automática, logs detallados
-
----
-
-### **04. Base de Datos**
-**Archivo:** [`04-BASE-DATOS.md`](04-BASE-DATOS.md)
-
-**Contenido:**
-- 🏗️ Estructura completa de tablas
-- 🔍 Índices y optimizaciones de consultas
-- 🔄 Flujos de datos principales
-- 🛡️ Integridad referencial y constraints
-- 📊 Consultas típicas y estadísticas
-- 🔧 Scripts de mantenimiento
-
-**Tablas:** usuarios, incidencias, favoritos, carreteras_geocache
-
----
-
-### **05. Integración con API JCyL**
-**Archivo:** [`05-INTEGRACION-JCYL.md`](05-INTEGRACION-JCYL.md)
-
-**Contenido:**
-- 🌐 Conexión con Datos Abiertos de la Junta de Castilla y León
-- 📊 Estructura y mapeo de datos oficiales
-- 🔄 Transformación de formatos de datos
-- 🗺️ Geocodificación de ubicaciones
-- 🛡️ Manejo robusto de errores
-- 📈 Estadísticas de integración
-
-**Fuente:** https://datosabiertos.jcyl.es/web/jcyl/risp/es/transporte/incidencias_carreteras/
-
----
-
-### **06. Seguridad y Autenticación**
-**Archivo:** [`06-SEGURIDAD-AUTENTICACION.md`](06-SEGURIDAD-AUTENTICACION.md)
-
-**Contenido:**
-- 🔐 Sistema de login y registro de usuarios
-- 🔒 Hashing seguro de contraseñas (bcrypt)
-- 🛡️ Protección contra ataques comunes (SQL Injection, XSS, CSRF)
-- 📊 Logging de eventos de seguridad
-- 🔍 Validación y sanitización de entrada
-- 🌐 Headers de seguridad HTTP
-
-**Características:** Sesiones seguras, prepared statements, logs de auditoría
-
----
-
-### **07. Instalación y Configuración**
-**Archivo:** [`07-INSTALACION-CONFIGURACION.md`](07-INSTALACION-CONFIGURACION.md)
-
-**Contenido:**
-- 📋 Requisitos del sistema
-- 🚀 Guía de instalación paso a paso
-- ⚙️ Configuración de servidor web (Apache/Nginx)
-- 🔧 Configuración de base de datos
-- 🔄 Instalación de actualización automática (cron)
-- 🌐 Configuración SSL y dominio
-- 🔍 Verificación y troubleshooting
-
-**Requisitos:** PHP 7.4+, MySQL 5.7+, Apache/Nginx
-
----
-
-## 🎯 **Características Principales del Sistema**
-
-### **🗺️ Visualización Interactiva**
-- Mapa de Castilla y León con marcadores de incidencias
-- Colores diferenciados por tipo de incidencia
-- Popups informativos con detalles completos
-- Filtros dinámicos por provincia, tipo y estado
-
-### **📊 Estadísticas en Tiempo Real**
-- Gráficos por provincia y tipo de incidencia
-- Contadores dinámicos de incidencias activas
-- Colores sincronizados entre mapa y estadísticas
-- Actualización automática de datos
-
-### **👤 Gestión de Usuarios**
-- Sistema de registro y login seguro
-- Gestión personal de incidencias favoritas
-- Separación de datos por usuario
-- Sesiones seguras con timeout automático
-
-### **🔄 Actualización Automática**
-- Descarga cada 30 minutos desde API oficial
-- Comparación inteligente de datos
-- Estados automáticos: activa, en_proceso, resuelta
-- Logs detallados de todas las operaciones
-
-### **📱 Diseño Responsive**
-- Interfaz adaptada para móviles y tablets
-- Menú hamburguesa en dispositivos pequeños
-- Mapas optimizados para touch
-- Experiencia consistente en todos los dispositivos
-
-## 🔧 **Arquitectura Técnica**
-
-### **Frontend**
-```
-HTML5 + CSS3 + JavaScript ES6+
-├── Leaflet (Mapas interactivos)
-├── Chart.js (Gráficos estadísticos)
-├── Fetch API (Comunicación con backend)
-└── Responsive Design (Mobile-first)
-```
-
-### **Backend**
-```
-PHP 7.4+ + MySQL 5.7+
-├── REST APIs (JSON responses)
-├── MVC Pattern (Models, Controllers)
-├── PDO (Database abstraction)
-└── Security Layer (Authentication, validation)
-```
-
-### **Integración Externa**
-```
-APIs Externas
-├── Junta de Castilla y León (Datos oficiales)
-├── Nominatim (Geocodificación)
-└── OpenStreetMap (Tiles de mapa)
-```
-
-## 📊 **Estados de Incidencias**
-
-| Estado | Color | Descripción | Condición |
-|--------|-------|-------------|-----------|
-| 🟢 **activa** | Verde | Nueva incidencia | Solo en JSON nuevo |
-| 🟡 **en_proceso** | Amarillo | Incidencia continúa | En ambos JSONs |
-| 🔴 **resuelta** | Rojo | Incidencia solucionada | Solo en JSON anterior |
-
-## 🎨 **Tipos de Incidencias**
-
-| Tipo | Color | Icono | Ejemplos |
-|------|-------|-------|----------|
-| **Accidente** | 🔴 Rojo | 🚗 | Colisiones, vuelcos |
-| **Obras** | 🟠 Naranja | 🚧 | Mantenimiento, construcción |
-| **Meteorológica** | 🔵 Azul | 🌨️ | Nieve, hielo, desprendimientos |
-| **Retención** | 🟣 Morado | 🚦 | Tráfico denso, cortes |
-
-## 🚀 **Instalación Rápida**
-
+### **Pasos:**
 ```bash
-# 1. Clonar/descargar proyecto
-git clone https://github.com/tu-usuario/openroadcyl.git
+# 1. Descargar proyecto
+# Descomprimir en tu servidor web
 
-# 2. Configurar base de datos
-mysql -u root -p < database/create_tables.sql
-mysql -u root -p < database/create_geocache_table.sql
+# 2. Instalar base de datos (UN SOLO COMANDO)
+mysql -u root -p < database/bd_final.sql
 
 # 3. Configurar conexión
-# Editar backend/config/database.php
+# Editar backend/config/database.php con tus credenciales
 
-# 4. Configurar servidor web
-# Copiar configuración Apache/Nginx
+# 4. Configurar nombre de proyecto
+# Editar frontend/js/main.js línea 9:
+const projectName = 'tu_nombre_carpeta';
 
-# 5. Instalar actualización automática
-crontab -e
-# Agregar: */30 * * * * /usr/bin/php /path/to/backend/scripts/update_data.php
+# 5. ¡Listo para usar!
 ```
 
-## 📈 **Métricas del Sistema**
+### **Usuarios incluidos:**
+- **Admin:** `admin@openroadcyl.es` / `admin123`
+- **Test:** `test@openroadcyl.es` / `test123`
 
-### **Rendimiento:**
-- ⚡ Carga inicial: < 2 segundos
-- 🔄 Actualización de datos: 30 minutos
-- 💾 Cache de geocodificación: 90%+ hit rate
-- 📊 Consultas optimizadas con índices
+## 🌟 **Características Principales**
 
-### **Seguridad:**
-- 🔐 Contraseñas hasheadas con bcrypt
-- 🛡️ Prepared statements (SQL Injection)
-- 🔒 Headers de seguridad HTTP
-- 📊 Logs de auditoría completos
+### **🗺️ Mapa Interactivo**
+- Visualización de todas las incidencias en Castilla y León
+- Marcadores con colores por tipo de incidencia
+- Información detallada en popups
+- Filtros por provincia, tipo y estado
 
-### **Escalabilidad:**
-- 👥 Soporte multi-usuario
-- 📊 Separación de datos por usuario
-- 🔄 Sistema de cache inteligente
-- 📈 Arquitectura preparada para crecimiento
+### **📊 Estadísticas en Tiempo Real**
+- Gráficos por provincia y tipo
+- Contadores dinámicos
+- Colores sincronizados con el mapa
+- Datos actualizados automáticamente
 
-## 🔗 **Enlaces Útiles**
+### **👤 Sistema de Usuarios**
+- Registro y login seguro
+- Favoritos personales por usuario
+- Sesiones seguras con timeout
+- Separación completa de datos
+
+### **🔄 Actualización Automática**
+- Descarga datos oficiales cada 30 minutos
+- Comparación inteligente de cambios
+- Estados automáticos: **activa**, **en_proceso**, **resuelta**
+- Logs detallados de operaciones
+
+### **� Diseño Responsive**
+- Funciona en móviles, tablets y desktop
+- Menú hamburguesa en dispositivos pequeños
+- Mapas optimizados para touch
+- Experiencia consistente
+
+## 🎨 **Estados y Tipos de Incidencias**
+
+### **Estados Automáticos:**
+| Estado | Color | Descripción |
+|--------|-------|-------------|
+| 🟢 **activa** | Verde | Nueva incidencia detectada |
+| 🟡 **en_proceso** | Amarillo | Incidencia que continúa |
+| � **resuelta** | Rojo | Incidencia solucionada |
+
+### **Tipos de Incidencias:**
+| Tipo | Color | Ejemplos |
+|------|-------|----------|
+| **Accidente** | � Rojo | Colisiones, vuelcos |
+| **Obras** | � Naranja | Mantenimiento, construcción |
+| **Meteorológica** | 🔵 Azul | Nieve, hielo, desprendimientos |
+| **Retención** | 🟣 Morado | Tráfico denso, cortes |
+
+## 🏗️ **Arquitectura del Sistema**
+
+### **Frontend:**
+- **HTML5 + CSS3 + JavaScript ES6+**
+- **Leaflet** para mapas interactivos
+- **Chart.js** para gráficos estadísticos
+- **Diseño responsive** mobile-first
+
+### **Backend:**
+- **PHP 7.4+** con arquitectura MVC
+- **MySQL** con índices optimizados
+- **REST APIs** con respuestas JSON
+- **Seguridad** multicapa
+
+### **Integración:**
+- **API JCyL** para datos oficiales
+- **Nominatim** para geocodificación
+- **OpenStreetMap** para tiles de mapa
+
+## � **Esteructura del Proyecto**
+
+```
+openroadcyl/
+├── frontend/                 # Interfaz de usuario
+│   ├── index.html           # Página principal
+│   ├── js/main.js           # Lógica JavaScript
+│   ├── css/styles.css       # Estilos
+│   └── pages/               # Páginas adicionales
+├── backend/                 # Servidor y APIs
+│   ├── api/                 # Endpoints REST
+│   ├── controllers/         # Lógica de negocio
+│   ├── models/              # Modelos de datos
+│   ├── services/            # Servicios (actualización)
+│   ├── config/              # Configuración
+│   ├── data/                # Archivos JSON
+│   └── logs/                # Logs del sistema
+└── database/                # Scripts de base de datos
+    └── bd_final.sql         # Instalación completa
+```
+
+## 🔧 **Configuración Avanzada**
+
+### **Actualización Automática (Cron):**
+```bash
+# Ejecutar cada 30 minutos
+*/30 * * * * /usr/bin/php /path/to/backend/scripts/update_data.php
+```
+
+### **Configuración de Rutas:**
+```javascript
+// En frontend/js/main.js línea 9
+const projectName = 'mi_proyecto'; // Cambiar por tu carpeta
+```
+
+### **Base de Datos:**
+```php
+// En backend/config/database.php
+private $host = 'localhost';
+private $db_name = 'openroadcyl';
+private $username = 'tu_usuario';
+private $password = 'tu_password';
+```
+
+## �️ **Seguridad Implementada**
+
+- **Contraseñas hasheadas** con bcrypt
+- **Prepared statements** contra SQL Injection
+- **Headers de seguridad** HTTP
+- **Validación y sanitización** de entrada
+- **Sesiones seguras** con timeout
+- **Logs de auditoría** completos
+
+## 📊 **Rendimiento**
+
+- ⚡ **Carga inicial:** < 2 segundos
+- 🔄 **Actualización:** Cada 30 minutos
+- 💾 **Cache geocodificación:** 90%+ hit rate
+- 📈 **Consultas optimizadas** con índices
+
+## 📚 **Documentación Técnica Detallada**
+
+Para información técnica completa, consulta la documentación en `/docs/`:
+
+- **[Frontend](docs/01-FRONTEND-INTERFAZ.md)** - Interfaz y JavaScript
+- **[Backend](docs/02-BACKEND-APIS.md)** - APIs y controladores  
+- **[Actualización](docs/03-SISTEMA-ACTUALIZACION.md)** - Sistema automático
+- **[Base de Datos](docs/04-BASE-DATOS.md)** - Estructura y consultas
+- **[Integración JCyL](docs/05-INTEGRACION-JCYL.md)** - API oficial
+- **[Seguridad](docs/06-SEGURIDAD-AUTENTICACION.md)** - Autenticación
+- **[Instalación](docs/07-INSTALACION-CONFIGURACION.md)** - Guía completa
+
+## � **Enlaces Útiles**
 
 - **API Oficial JCyL:** https://datosabiertos.jcyl.es/
-- **Leaflet Documentation:** https://leafletjs.com/
-- **Chart.js Documentation:** https://www.chartjs.org/
-- **PHP PDO Manual:** https://www.php.net/manual/en/book.pdo.php
-- **MySQL Documentation:** https://dev.mysql.com/doc/
+- **Leaflet:** https://leafletjs.com/
+- **Chart.js:** https://www.chartjs.org/
+- **PHP PDO:** https://www.php.net/manual/en/book.pdo.php
 
-## 📞 **Soporte y Contacto**
+## 🚀 **Características Técnicas**
 
-Para consultas técnicas, problemas de instalación o sugerencias de mejora, consulta la documentación específica de cada componente o revisa los logs del sistema para información detallada sobre errores.
+### **Funcionalidades:**
+✅ Mapa interactivo con marcadores  
+✅ Sistema de usuarios con favoritos  
+✅ Actualización automática de datos  
+✅ Estadísticas y gráficos dinámicos  
+✅ Diseño responsive  
+✅ Filtros avanzados  
+✅ Geocodificación con cache  
+✅ Logs de seguridad  
+✅ Estados automáticos de incidencias  
+✅ Integración con API oficial  
+
+### **Tecnologías:**
+- **Frontend:** HTML5, CSS3, JavaScript ES6+, Leaflet, Chart.js
+- **Backend:** PHP 7.4+, MySQL 5.7+, PDO, REST APIs
+- **Seguridad:** bcrypt, prepared statements, headers HTTP
+- **Integración:** API JCyL, Nominatim, OpenStreetMap
 
 ---
 
-**OpenRoadCyL** - Sistema de Gestión de Incidencias de Tráfico para Castilla y León
-*Desarrollado con ❤️ para mejorar la información vial en la comunidad autónoma*
+**OpenRoadCyL** - Sistema completo de gestión de incidencias de tráfico para Castilla y León  
+*Desarrollado para mejorar la información vial en la comunidad autónoma* 🚗💨
