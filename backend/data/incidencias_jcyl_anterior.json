@@ -20,6 +20,24 @@
     {
         "fields": {
             "provincia": "Ávila",
+            "via": "AV-120",
+            "pkinicio": 18.2,
+            "pkfin": 18.225,
+            "tramo": "DE MUÑANA (N-110) A MUÑICO (AV-110)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 14:20:27",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237443",
+            "numincidencia": 237443,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Ávila",
             "via": "AV-562",
             "pkinicio": 11.4,
             "pkfin": 12.2,
@@ -39,18 +57,36 @@
         "fields": {
             "provincia": "Ávila",
             "via": "AV-901",
-            "pkinicio": 10.5,
-            "pkfin": 29.3,
+            "pkinicio": 14.9,
+            "pkfin": 15.3,
             "tramo": "DE VILLANUEVA DE ÁVILA (AV-P-420)A MIJARES",
             "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:27:27",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237269",
-            "numincidencia": 237269,
-            "fechamodificacion": "2026\/02\/04 11:57:04"
+            "fechaalta": "2026\/02\/05 09:26:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237356",
+            "numincidencia": 237356,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Ávila",
+            "via": "AV-901",
+            "pkinicio": 17.9,
+            "pkfin": 22,
+            "tramo": "DE VILLANUEVA DE ÁVILA (AV-P-420)A MIJARES",
+            "tipo": "Precaución",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 09:28:15",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237357",
+            "numincidencia": 237357,
+            "fechamodificacion": ""
         }
     },
     {
@@ -145,24 +181,6 @@
     },
     {
         "fields": {
-            "provincia": "Ávila",
-            "via": "AV-932",
-            "pkinicio": 8.5,
-            "pkfin": 21,
-            "tramo": "DE PIEDRAHÍTA (N-110) A LA HERGUIJUELA",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:54:27",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237286",
-            "numincidencia": 237286,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
             "provincia": "Burgos",
             "via": "BU-504",
             "pkinicio": 16.9,
@@ -176,6 +194,24 @@
             "fechaalta": "2026\/02\/03 10:31:45",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236884",
             "numincidencia": 236884,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Burgos",
+            "via": "BU-627",
+            "pkinicio": 31.95,
+            "pkfin": 32.05,
+            "tramo": "DE VILLADIEGO (BU-640) A SOTRESGUDO (BU-610)",
+            "tipo": "Circulación alternativa",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 14:18:04",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237442",
+            "numincidencia": 237442,
             "fechamodificacion": ""
         }
     },
@@ -201,35 +237,35 @@
         "fields": {
             "provincia": "Burgos",
             "via": "BU-820",
-            "pkinicio": 36,
-            "pkfin": 48,
+            "pkinicio": 37,
+            "pkfin": 43.5,
             "tramo": "DE PINEDA DE LA SIERRA A RIOCAVADO DE LA SIERRA (PTO. DEL MANQUILLO)",
             "tipo": "Precaución",
-            "causa": "Hielo",
+            "causa": "Otras",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 10:04:26",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237246",
-            "numincidencia": 237246,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:04:54",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237404",
+            "numincidencia": 237404,
             "fechamodificacion": ""
         }
     },
     {
         "fields": {
             "provincia": "Burgos",
-            "via": "BU-825",
-            "pkinicio": 21,
-            "pkfin": 28.3,
-            "tramo": "DE BU-820 A LÍMITE DE C.A. DE LA RIOJA",
+            "via": "BU-822",
+            "pkinicio": 13.5,
+            "pkfin": 13.5,
+            "tramo": "DE NEILA (COLLADO DE NEILA) A LÍMITE DE C.A. DE LA RIOJA",
             "tipo": "Precaución",
-            "causa": "Nieve",
+            "causa": "Desprendimientos",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 09:15:03",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237210",
-            "numincidencia": 237210,
+            "observaciones": "Obstáculos\/Objetos en la calzada",
+            "fechaalta": "2026\/02\/05 10:51:25",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237383",
+            "numincidencia": 237383,
             "fechamodificacion": ""
         }
     },
@@ -308,18 +344,18 @@
     {
         "fields": {
             "provincia": "León",
-            "via": "CL-623",
-            "pkinicio": 0,
-            "pkfin": 27,
-            "tramo": "DE SAN ANDRÉS DEL RABANEDO A LA MAGDALENA (CL-626)",
+            "via": "CL-624",
+            "pkinicio": 4.3,
+            "pkfin": 4.3,
+            "tramo": "DE PUENTE VILLARENTE (N-601) A BOÑAR ",
             "tipo": "Precaución",
-            "causa": "Nieve",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:13:56",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237266",
-            "numincidencia": 237266,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:11:06",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237351",
+            "numincidencia": 237351,
             "fechamodificacion": ""
         }
     },
@@ -327,107 +363,17 @@
         "fields": {
             "provincia": "León",
             "via": "CL-626",
-            "pkinicio": 0,
-            "pkfin": 3,
-            "tramo": "DE LÍMITE DE C.A. DE ASTURIAS A CABOALLES DE ABAJO (LE-497)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/05 08:14:42",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237328",
-            "numincidencia": 237328,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 7.01,
-            "pkfin": 14.1,
-            "tramo": "DE CABOALLES DE ABAJO (LE-497) A RIOSCURO (LE-493) ",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:24:26",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237267",
-            "numincidencia": 237267,
-            "fechamodificacion": "2026\/02\/04 11:28:56"
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 14.11,
-            "pkfin": 23.52,
-            "tramo": "DE RIOSCURO (LE-493) A PIEDRAFITA DE BABIA (LE-495)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 11:29:53",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237270",
-            "numincidencia": 237270,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 23.54,
-            "pkfin": 56.28,
-            "tramo": "DE PIEDRAFITA DE BABIA (LE-495) A LE-473",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 11:26:09",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237268",
-            "numincidencia": 237268,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 56.28,
-            "pkfin": 56.3,
-            "tramo": "DE LE-473 A LA MAGDALENA (LE-420)",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 07:17:29",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237070",
-            "numincidencia": 237070,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 56.28,
-            "pkfin": 79,
+            "pkinicio": 65,
+            "pkfin": 79.9,
             "tramo": "DE LE-473 A LA MAGDALENA (LE-420)",
             "tipo": "Precaución",
             "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "Balsas puntuales",
-            "fechaalta": "2026\/02\/02 11:56:21",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236681",
-            "numincidencia": 236681,
+            "fechaalta": "2026\/02\/05 11:32:05",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237395",
+            "numincidencia": 237395,
             "fechamodificacion": ""
         }
     },
@@ -436,34 +382,16 @@
             "provincia": "León",
             "via": "CL-626",
             "pkinicio": 79.9,
-            "pkfin": 94.44,
+            "pkfin": 82,
             "tramo": "DE LA MAGDALENA (LE-420) A LA ROBLA (N-630)",
             "tipo": "Precaución",
-            "causa": "Nieve",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 12:25:41",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237293",
-            "numincidencia": 237293,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-626",
-            "pkinicio": 94.44,
-            "pkfin": 115.9,
-            "tramo": "DE LA ROBLA (N-630) A LA VECILLA (LE-321)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 12:26:10",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237295",
-            "numincidencia": 237295,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:32:05",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237396",
+            "numincidencia": 237396,
             "fechamodificacion": ""
         }
     },
@@ -524,42 +452,6 @@
     {
         "fields": {
             "provincia": "León",
-            "via": "CL-631",
-            "pkinicio": 46,
-            "pkfin": 61.05,
-            "tramo": "DE LE-711 (PÁRAMO DE SIL) A VILLABLINO (CL-626)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 10:47:35",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237258",
-            "numincidencia": 237258,
-            "fechamodificacion": "2026\/02\/04 10:50:13"
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "CL-635",
-            "pkinicio": 0,
-            "pkfin": 21.7,
-            "tramo": "DE BURÓN (N-625) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 13:44:28",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237311",
-            "numincidencia": 237311,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
             "via": "CL-635",
             "pkinicio": 5.9,
             "pkfin": 5.9,
@@ -572,6 +464,24 @@
             "fechaalta": "2025\/12\/30 15:16:51",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=230056",
             "numincidencia": 230056,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "León",
+            "via": "LE-106",
+            "pkinicio": 0,
+            "pkfin": 13.42,
+            "tramo": "DE N-VI A BEMBIBRE (A-6)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:34:28",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237420",
+            "numincidencia": 237420,
             "fechamodificacion": ""
         }
     },
@@ -618,14 +528,14 @@
             "pkinicio": 62,
             "pkfin": 66.63,
             "tramo": "DE LA BAÑA (LE-164) A LÍMITE DE C.A. DE GALICIA",
-            "tipo": "Cadenas",
+            "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/05 06:28:55",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237323",
-            "numincidencia": 237323,
+            "fechaalta": "2026\/02\/05 12:54:00",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237421",
+            "numincidencia": 237421,
             "fechamodificacion": ""
         }
     },
@@ -722,126 +632,18 @@
     {
         "fields": {
             "provincia": "León",
-            "via": "LE-211",
-            "pkinicio": 0,
-            "pkfin": 13.39,
-            "tramo": "DE ALMANZA (LE-232) A VALLE DE LAS CASAS (CL-626)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 13:58:23",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237316",
-            "numincidencia": 237316,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-213",
-            "pkinicio": 12,
-            "pkfin": 23.4,
-            "tramo": "DE PUENTE VILLARENTE (N-601) A GRADEFES (N-625)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 12:49:47",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237303",
-            "numincidencia": 237303,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-215",
-            "pkinicio": 0,
-            "pkfin": 18,
-            "tramo": "DE BOCA DE HUÉRGANO (N-625) A LÍMITE DE PROVINCIA PALENCIA",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 13:51:59",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237313",
-            "numincidencia": 237313,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-231",
-            "pkinicio": 0,
-            "pkfin": 15.4,
-            "tramo": "DE SAHECHORES (N-625) A ALMANZA (LE-232)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 12:49:16",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237302",
-            "numincidencia": 237302,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
             "via": "LE-232",
-            "pkinicio": 10,
-            "pkfin": 32.65,
+            "pkinicio": 18.9,
+            "pkfin": 18.9,
             "tramo": "DE SAHAGÚN (N-120) A ALMANZA (LE-231)",
             "tipo": "Precaución",
-            "causa": "Nieve",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 12:48:26",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237300",
-            "numincidencia": 237300,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-232",
-            "pkinicio": 32.65,
-            "pkfin": 48.65,
-            "tramo": "DE ALMANZA (LE-231) A PUENTE ALMUHEY (CL-626)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 12:48:26",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237301",
-            "numincidencia": 237301,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-233",
-            "pkinicio": 0,
-            "pkfin": 8.58,
-            "tramo": "DE BESANDE (LE-215) A LE-234",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/03 08:35:52",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236837",
-            "numincidencia": 236837,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:38:44",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237379",
+            "numincidencia": 237379,
             "fechamodificacion": ""
         }
     },
@@ -884,180 +686,18 @@
     {
         "fields": {
             "provincia": "León",
-            "via": "LE-311",
-            "pkinicio": 0,
-            "pkfin": 25.4,
-            "tramo": "DE LEÓN (LE-30) A ROBLES DE LA VALCUEVA (CL-626)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:48:51",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237283",
-            "numincidencia": 237283,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-315",
-            "pkinicio": 0,
-            "pkfin": 17,
-            "tramo": "DE ROBLES DE LA VALCUEVA (CL-626) A PIEDRAFITA DE MEDINA",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 06:50:56",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237012",
-            "numincidencia": 237012,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-315",
-            "pkinicio": 17,
-            "pkfin": 23,
-            "tramo": "DE ROBLES DE LA VALCUEVA (CL-626) A PIEDRAFITA DE MEDINA",
-            "tipo": "Cerrada",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 07:46:59",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237115",
-            "numincidencia": 237115,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
             "via": "LE-321",
-            "pkinicio": 6,
-            "pkfin": 17.75,
-            "tramo": "DE DEVESA (N-621) A LA VECILLA (CL-626)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada",
-            "fechaalta": "2026\/02\/04 13:28:18",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237307",
-            "numincidencia": 237307,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-321",
-            "pkinicio": 17.75,
-            "pkfin": 17.8,
-            "tramo": "DE LA VECILLA (CL-626) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 06:39:53",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236987",
-            "numincidencia": 236987,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-321",
-            "pkinicio": 19,
-            "pkfin": 40,
-            "tramo": "DE LA VECILLA (CL-626) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 06:51:34",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237013",
-            "numincidencia": 237013,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-321",
-            "pkinicio": 40,
+            "pkinicio": 41,
             "pkfin": 45,
             "tramo": "DE LA VECILLA (CL-626) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Cerrada",
+            "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/04 07:47:30",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237116",
-            "numincidencia": 237116,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-331",
-            "pkinicio": 0,
-            "pkfin": 26.8,
-            "tramo": "DE BOÑAR (CL-626) A PUEBLA DE LILLO (LE-333)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada",
-            "fechaalta": "2026\/02\/04 12:37:47",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237297",
-            "numincidencia": 237297,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-331",
-            "pkinicio": 31,
-            "pkfin": 41.6,
-            "tramo": "DE PUEBLA DE LILLO (LE-333) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada",
-            "fechaalta": "2026\/02\/04 13:38:31",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237308",
-            "numincidencia": 237308,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-333",
-            "pkinicio": 5,
-            "pkfin": 14.4,
-            "tramo": "DE PUEBLA DE LILLO (LE-331) A LÍMITE DE C.A. DE ASTURIAS (PTO DE TARNA)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada",
-            "fechaalta": "2026\/02\/04 13:45:06",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237312",
-            "numincidencia": 237312,
+            "fechaalta": "2026\/02\/05 12:26:28",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237417",
+            "numincidencia": 237417,
             "fechamodificacion": ""
         }
     },
@@ -1076,24 +716,6 @@
             "fechaalta": "2026\/02\/02 09:43:03",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236653",
             "numincidencia": 236653,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-441",
-            "pkinicio": 1.7,
-            "pkfin": 21.92,
-            "tramo": "DE SAN ANDRÉS DE RABANEDO A LE-420 (VILLANUEVA DE CARRIZO)",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 11:49:30",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237284",
-            "numincidencia": 237284,
             "fechamodificacion": ""
         }
     },
@@ -1122,50 +744,32 @@
             "pkinicio": 20,
             "pkfin": 40,
             "tramo": "DE POBLADURA A CL-623 ",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 13:41:36",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237309",
-            "numincidencia": 237309,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-460",
-            "pkinicio": 40,
-            "pkfin": 65,
-            "tramo": "DE POBLADURA A CL-623 ",
             "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 13:42:11",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237310",
-            "numincidencia": 237310,
+            "observaciones": "Cerrada para tráfico pesado",
+            "fechaalta": "2026\/02\/05 12:27:12",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237418",
+            "numincidencia": 237418,
             "fechamodificacion": ""
         }
     },
     {
         "fields": {
             "provincia": "León",
-            "via": "LE-473",
+            "via": "LE-465",
             "pkinicio": 0,
-            "pkfin": 10,
-            "tramo": "DE N-630 (POLA DE GORDÓN) A CL-626 (PANTANO DE LUNA)",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
+            "pkfin": 5.7,
+            "tramo": "DE LE-5330 (ACCESO A-6) A LE-460 ",
+            "tipo": "Precaución",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "Nieve helada - Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 06:53:01",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237015",
-            "numincidencia": 237015,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:05:55",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237373",
+            "numincidencia": 237373,
             "fechamodificacion": ""
         }
     },
@@ -1191,17 +795,17 @@
         "fields": {
             "provincia": "León",
             "via": "LE-473",
-            "pkinicio": 11,
-            "pkfin": 18,
+            "pkinicio": 13,
+            "pkfin": 17,
             "tramo": "DE N-630 (POLA DE GORDÓN) A CL-626 (PANTANO DE LUNA)",
             "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado y autobuses",
-            "fechaalta": "2026\/02\/03 12:17:27",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236914",
-            "numincidencia": 236914,
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 12:26:00",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237416",
+            "numincidencia": 237416,
             "fechamodificacion": ""
         }
     },
@@ -1216,28 +820,10 @@
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 14:38:39",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237318",
-            "numincidencia": 237318,
-            "fechamodificacion": "2026\/02\/04 14:41:48"
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-482",
-            "pkinicio": 0,
-            "pkfin": 2.3,
-            "tramo": "DE SAN EMILIANO (LE-481) A PINOS",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/04 14:39:21",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237319",
-            "numincidencia": 237319,
+            "fechaalta": "2026\/02\/05 14:05:32",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237440",
+            "numincidencia": 237440,
             "fechamodificacion": ""
         }
     },
@@ -1248,32 +834,14 @@
             "pkinicio": 0,
             "pkfin": 2.6,
             "tramo": "DE VEGA DE VIEJOS (LE-495) A CL-626",
-            "tipo": "Cadenas",
+            "tipo": "Precaución",
             "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/04 07:27:51",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237081",
-            "numincidencia": 237081,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-493",
-            "pkinicio": 36,
-            "pkfin": 53.94,
-            "tramo": "DE VEGARIENZA A RIOSCURO (CL-626)",
-            "tipo": "Cadenas",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 11:44:16",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237277",
-            "numincidencia": 237277,
+            "fechaalta": "2026\/02\/05 14:04:40",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237438",
+            "numincidencia": 237438,
             "fechamodificacion": ""
         }
     },
@@ -1292,42 +860,6 @@
             "fechaalta": "2026\/01\/27 09:14:07",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=234942",
             "numincidencia": 234942,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-495",
-            "pkinicio": 6,
-            "pkfin": 9.82,
-            "tramo": "DE PIEDRAFITA DE BABIA (CL-626) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/04 14:40:10",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237320",
-            "numincidencia": 237320,
-            "fechamodificacion": "2026\/02\/04 14:40:51"
-        }
-    },
-    {
-        "fields": {
-            "provincia": "León",
-            "via": "LE-497",
-            "pkinicio": 0,
-            "pkfin": 10.4,
-            "tramo": "DE CABOALLES DE ABAJO (CL-626) A LÍMITE DE C.A. DE ASTURIAS ",
-            "tipo": "Precaución",
-            "causa": "Nieve",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "Cerrada para tráfico pesado",
-            "fechaalta": "2026\/02\/05 07:59:52",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237327",
-            "numincidencia": 237327,
             "fechamodificacion": ""
         }
     },
@@ -1641,6 +1173,42 @@
         "fields": {
             "provincia": "Palencia",
             "via": "CL-626",
+            "pkinicio": 199.6,
+            "pkfin": 200,
+            "tramo": "DE SANTIBAÑEZ DE LA PEÑA (P-214) A P-225 (CANTORAL DE LA PEÑA) ",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:26:36",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237355",
+            "numincidencia": 237355,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "CL-626",
+            "pkinicio": 210.2,
+            "pkfin": 210.4,
+            "tramo": "DE P-227 A CERVERA DE PISUERGA (CL-627)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:24:28",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237424",
+            "numincidencia": 237424,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "CL-626",
             "pkinicio": 212.2,
             "pkfin": 212.7,
             "tramo": "DE P-227 A CERVERA DE PISUERGA (CL-627)",
@@ -1724,6 +1292,42 @@
             "fechaalta": "2024\/07\/30 13:44:24",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=216296",
             "numincidencia": 216296,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-210",
+            "pkinicio": 7.35,
+            "pkfin": 7.55,
+            "tramo": "DE P-211 A CARDAÑO DE ABAJO (P-217)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:15:40",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237392",
+            "numincidencia": 237392,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-214",
+            "pkinicio": 4.65,
+            "pkfin": 4.85,
+            "tramo": "DE P-225 A SANTIBAÑEZ DE LA PEÑA (CL-626)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:57:34",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237384",
+            "numincidencia": 237384,
             "fechamodificacion": ""
         }
     },
@@ -1911,17 +1515,53 @@
         "fields": {
             "provincia": "Palencia",
             "via": "P-233",
-            "pkinicio": 8.3,
-            "pkfin": 8.55,
+            "pkinicio": 5,
+            "pkfin": 5.3,
             "tramo": "DE SOTOBAÑADO (P-230) A BÁSCONES DE OJEDA (P-223)",
             "tipo": "Precaución",
-            "causa": "Otras",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/03 07:59:11",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236796",
-            "numincidencia": 236796,
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:11:06",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237390",
+            "numincidencia": 237390,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-233",
+            "pkinicio": 8.3,
+            "pkfin": 9.3,
+            "tramo": "DE SOTOBAÑADO (P-230) A BÁSCONES DE OJEDA (P-223)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:39:29",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237363",
+            "numincidencia": 237363,
+            "fechamodificacion": "2026\/02\/05 09:42:08"
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-237",
+            "pkinicio": 1.45,
+            "pkfin": 1.75,
+            "tramo": "DE VILLAELES DE VALDAVIA (P-230) A BUENAVISTA DE VALDAVIA (P-225)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:07:57",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237348",
+            "numincidencia": 237348,
             "fechamodificacion": ""
         }
     },
@@ -1959,6 +1599,24 @@
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=216449",
             "numincidencia": 216449,
             "fechamodificacion": "2024\/08\/09 13:09:53"
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-412",
+            "pkinicio": 10.8,
+            "pkfin": 11.2,
+            "tramo": "DE CORDOVILLA LA REAL (P-413) A ASTUDILLO (P-405)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:10:41",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237388",
+            "numincidencia": 237388,
+            "fechamodificacion": ""
         }
     },
     {
@@ -2252,6 +1910,42 @@
     {
         "fields": {
             "provincia": "Palencia",
+            "via": "P-963",
+            "pkinicio": 2.95,
+            "pkfin": 3.15,
+            "tramo": "DE VILLAFOLFO (P-961) A CERVATOS DE LA CUEZA (N-120)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:33:25",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237419",
+            "numincidencia": 237419,
+            "fechamodificacion": "2026\/02\/05 12:41:57"
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
+            "via": "P-970",
+            "pkinicio": 3.5,
+            "pkfin": 3.6,
+            "tramo": "DE FRECHILLA (P-924) A CISNEROS (CL-613)",
+            "tipo": "Precaución",
+            "causa": "Otras",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 08:40:26",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237335",
+            "numincidencia": 237335,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Palencia",
             "via": "P-981",
             "pkinicio": 0,
             "pkfin": 9.56,
@@ -2360,24 +2054,6 @@
     {
         "fields": {
             "provincia": "Salamanca",
-            "via": "CL-510",
-            "pkinicio": 6.5,
-            "pkfin": 7.5,
-            "tramo": "DE CALVARRASA DE ARRIBA A ALBA DE TORMES (SA-114)",
-            "tipo": "Precaución",
-            "causa": "Otras",
-            "calzada": "Única",
-            "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/05 08:27:24",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237330",
-            "numincidencia": 237330,
-            "fechamodificacion": ""
-        }
-    },
-    {
-        "fields": {
-            "provincia": "Salamanca",
             "via": "CL-605",
             "pkinicio": 93.791,
             "pkfin": 94.152,
@@ -2401,13 +2077,31 @@
             "pkfin": 5.51,
             "tramo": "DE N-630 A LÍMITE DE PROVINCIA DE ÁVILA",
             "tipo": "Precaución",
-            "causa": "Hielo",
+            "causa": "Nieve",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/01\/28 12:16:29",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=235803",
-            "numincidencia": 235803,
+            "fechaalta": "2026\/02\/05 16:43:24",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237445",
+            "numincidencia": 237445,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
+            "via": "SA-102",
+            "pkinicio": 4.9,
+            "pkfin": 5.1,
+            "tramo": "DE SORIHUELA (N-630) A PUENTE DEL CONGOSTO",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:16:28",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237393",
+            "numincidencia": 237393,
             "fechamodificacion": ""
         }
     },
@@ -2558,6 +2252,24 @@
     {
         "fields": {
             "provincia": "Salamanca",
+            "via": "SA-211",
+            "pkinicio": 6.85,
+            "pkfin": 7.5,
+            "tramo": "DE N-620 A VECINOS",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:04:16",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237372",
+            "numincidencia": 237372,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
             "via": "SA-212",
             "pkinicio": 4.5,
             "pkfin": 5.2,
@@ -2594,18 +2306,72 @@
     {
         "fields": {
             "provincia": "Salamanca",
+            "via": "SA-214",
+            "pkinicio": 20.9,
+            "pkfin": 21.1,
+            "tramo": "DE GUIJUELO (N-630) A CRISTÓBAL (SA-220)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:39:32",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237433",
+            "numincidencia": 237433,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
             "via": "SA-220",
-            "pkinicio": 1.35,
-            "pkfin": 1.45,
+            "pkinicio": 2.5,
+            "pkfin": 2.7,
             "tramo": "DE BÉJAR (N-630) A CARRETERA A NAVALMORAL DE BÉJAR",
-            "tipo": "Circulación alternativa",
-            "causa": "Otras",
+            "tipo": "Precaución",
+            "causa": "Desprendimientos",
             "calzada": "Única",
             "rutaalt": "",
             "observaciones": "--",
-            "fechaalta": "2026\/02\/05 08:26:53",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237329",
-            "numincidencia": 237329,
+            "fechaalta": "2026\/02\/05 16:50:43",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237446",
+            "numincidencia": 237446,
+            "fechamodificacion": "2026\/02\/05 17:12:08"
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
+            "via": "SA-220",
+            "pkinicio": 9,
+            "pkfin": 11,
+            "tramo": "DE CARRETERA A NAVALMORAL DE BÉJAR A SANTIBÁÑEZ DE LA SIERRA (SA-205)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:20:29",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237394",
+            "numincidencia": 237394,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
+            "via": "SA-305",
+            "pkinicio": 38.5,
+            "pkfin": 39.5,
+            "tramo": "DE CL-517 A LEDESMA (SA-300)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:38:27",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237431",
+            "numincidencia": 237431,
             "fechamodificacion": ""
         }
     },
@@ -2642,6 +2408,42 @@
             "fechaalta": "2025\/12\/29 07:33:31",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=229939",
             "numincidencia": 229939,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
+            "via": "SA-804",
+            "pkinicio": 5.9,
+            "pkfin": 6.1,
+            "tramo": "DE SALAMANCA A ALDEARRUBIA",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 14:04:27",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237437",
+            "numincidencia": 237437,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Salamanca",
+            "via": "SA-804",
+            "pkinicio": 22,
+            "pkfin": 22.5,
+            "tramo": "DE ALDEARRUBIA A CANTALPINO (SA-801)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 15:05:01",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237444",
+            "numincidencia": 237444,
             "fechamodificacion": ""
         }
     },
@@ -2721,6 +2523,24 @@
         "fields": {
             "provincia": "Segovia",
             "via": "CL-603",
+            "pkinicio": 53,
+            "pkfin": 53.5,
+            "tramo": "DE CANTALEJO (SG-205) A SG-231 ",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:40:09",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237364",
+            "numincidencia": 237364,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "CL-603",
             "pkinicio": 78.8,
             "pkfin": 92.14,
             "tramo": "DE VILLOVELA DE PIRÓN A A-601 (VALSECA)",
@@ -2793,6 +2613,24 @@
         "fields": {
             "provincia": "Segovia",
             "via": "SG-205",
+            "pkinicio": 0,
+            "pkfin": 18.8,
+            "tramo": "DE CEREZO DE ABAJO (N-I) A SG-232",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 08:59:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237343",
+            "numincidencia": 237343,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-205",
             "pkinicio": 11.2,
             "pkfin": 11.2,
             "tramo": "DE CEREZO DE ABAJO (N-I) A SG-232",
@@ -2829,6 +2667,60 @@
         "fields": {
             "provincia": "Segovia",
             "via": "SG-205",
+            "pkinicio": 18.8,
+            "pkfin": 21.13,
+            "tramo": "DE SG-232 A SG-231",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 08:59:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237344",
+            "numincidencia": 237344,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-205",
+            "pkinicio": 21.13,
+            "pkfin": 22,
+            "tramo": "DE SG-231 A CANTALEJO (CL-603)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 08:59:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237345",
+            "numincidencia": 237345,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-205",
+            "pkinicio": 31.5,
+            "pkfin": 32.5,
+            "tramo": "DE CANTALEJO (CL-603) A HONTALBILLA (SG-211)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:54:33",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237371",
+            "numincidencia": 237371,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-205",
             "pkinicio": 55,
             "pkfin": 63.9,
             "tramo": "DE HONTALBILLA (SG-211) A CUÉLLAR (A-601) ",
@@ -2840,6 +2732,96 @@
             "fechaalta": "2026\/02\/04 10:38:46",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237255",
             "numincidencia": 237255,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-211",
+            "pkinicio": 6,
+            "pkfin": 6.3,
+            "tramo": "DE TABANERA LA LUENGA (A-601) A AGUILAFUENTE (SG-222)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 13:37:33",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237430",
+            "numincidencia": 237430,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-222",
+            "pkinicio": 2.425,
+            "pkfin": 2.475,
+            "tramo": "DE TURÉGANO (CL-603) A AGUILAFUENTE ",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:14:50",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237411",
+            "numincidencia": 237411,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-222",
+            "pkinicio": 14,
+            "pkfin": 14.1,
+            "tramo": "DE AGUILAFUENTE A NAVALMANZANO (A-601)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 14:14:48",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237441",
+            "numincidencia": 237441,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-234",
+            "pkinicio": 0,
+            "pkfin": 6.2,
+            "tramo": "DE CASTILLEJO DE MESLEÓN A SG-232",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:07:37",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237374",
+            "numincidencia": 237374,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
+            "via": "SG-241",
+            "pkinicio": 8.3,
+            "pkfin": 8.35,
+            "tramo": "DE SEPÚLVEDA (SG-232) A CL-603",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 10:08:11",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237375",
+            "numincidencia": 237375,
             "fechamodificacion": ""
         }
     },
@@ -2882,6 +2864,24 @@
     {
         "fields": {
             "provincia": "Segovia",
+            "via": "SG-411",
+            "pkinicio": 2.75,
+            "pkfin": 2.75,
+            "tramo": "DE N-601 A N-VI",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 14:04:54",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237439",
+            "numincidencia": 237439,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Segovia",
             "via": "SG-724",
             "pkinicio": 1.55,
             "pkfin": 1.55,
@@ -2900,6 +2900,42 @@
     {
         "fields": {
             "provincia": "Soria",
+            "via": "CL-101",
+            "pkinicio": 66,
+            "pkfin": 66.1,
+            "tramo": "DE GÓMARA (SO-340) A CARRETERA DE BANIEL-PERDICES",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:56:03",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237400",
+            "numincidencia": 237400,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
+            "via": "SO-110",
+            "pkinicio": 24,
+            "pkfin": 24.1,
+            "tramo": "DE FUENTEPINILLA (SO-100) A A-11 (VENTA NUEVA)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:03:56",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237402",
+            "numincidencia": 237402,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
             "via": "SO-630",
             "pkinicio": 0,
             "pkfin": 11.24,
@@ -2912,6 +2948,132 @@
             "fechaalta": "2025\/12\/19 13:42:46",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=228866",
             "numincidencia": 228866,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
+            "via": "SO-820",
+            "pkinicio": 22.4,
+            "pkfin": 22.6,
+            "tramo": "DE SOTILLO DEL RINCÓN A SO-810",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:50:00",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237435",
+            "numincidencia": 237435,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
+            "via": "SO-820",
+            "pkinicio": 23.5,
+            "pkfin": 23.6,
+            "tramo": "DE SOTILLO DEL RINCÓN A SO-810",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:49:11",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237434",
+            "numincidencia": 237434,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
+            "via": "SO-830",
+            "pkinicio": 8,
+            "pkfin": 24,
+            "tramo": "DE VINUESA (SO-820) A LÍMITE DE C.A. DE LA RIOJA",
+            "tipo": "Cadenas",
+            "causa": "Nieve",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Cerrada para tráfico pesado",
+            "fechaalta": "2026\/02\/05 09:37:04",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237360",
+            "numincidencia": 237360,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Soria",
+            "via": "SO-920",
+            "pkinicio": 28,
+            "pkfin": 28.1,
+            "tramo": "DE VALDEMALUQUE A SAN LEONARDO DE YAGÜE (N-234)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 11:52:47",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237398",
+            "numincidencia": 237398,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
+            "via": "CL-602",
+            "pkinicio": 53.3,
+            "pkfin": 53.3,
+            "tramo": "DE NAVA DEL REY (VA-800) A MEDINA DEL CAMPO",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:06:47",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237406",
+            "numincidencia": 237406,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
+            "via": "CL-610",
+            "pkinicio": 42,
+            "pkfin": 42.1,
+            "tramo": "DE SERRADA (VA-405) A MEDINA DEL CAMPO ",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:12:23",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237410",
+            "numincidencia": 237410,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
+            "via": "VA-103",
+            "pkinicio": 1,
+            "pkfin": 2,
+            "tramo": "DE A-62 A VALORIA LA BUENA (VA-102)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 10:39:25",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237380",
+            "numincidencia": 237380,
             "fechamodificacion": ""
         }
     },
@@ -3044,6 +3206,42 @@
     {
         "fields": {
             "provincia": "Valladolid",
+            "via": "VA-404",
+            "pkinicio": 6.1,
+            "pkfin": 6.2,
+            "tramo": "DE MEDINA DEL CAMPO A MATAPOZUELOS",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:08:17",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237407",
+            "numincidencia": 237407,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
+            "via": "VA-404",
+            "pkinicio": 14.85,
+            "pkfin": 14.85,
+            "tramo": "DE MEDINA DEL CAMPO A MATAPOZUELOS",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:09:14",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237408",
+            "numincidencia": 237408,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
             "via": "VA-505",
             "pkinicio": 4.24,
             "pkfin": 4.24,
@@ -3074,6 +3272,24 @@
             "fechaalta": "2026\/01\/22 08:54:36",
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=233024",
             "numincidencia": 233024,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
+            "via": "VA-542",
+            "pkinicio": 0,
+            "pkfin": 10.6,
+            "tramo": "DE MAYORGA (N-601) A LÍMITE DE PROVINCIA DE LEÓN",
+            "tipo": "Precaución",
+            "causa": "Otras",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "--",
+            "fechaalta": "2026\/02\/05 08:52:15",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237341",
+            "numincidencia": 237341,
             "fechamodificacion": ""
         }
     },
@@ -3116,6 +3332,24 @@
     {
         "fields": {
             "provincia": "Valladolid",
+            "via": "VA-800",
+            "pkinicio": 23.15,
+            "pkfin": 23.15,
+            "tramo": "DE CASTREJÓN A LÍMITE DE PROVINCIA DE SALAMANCA",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 12:11:33",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237409",
+            "numincidencia": 237409,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Valladolid",
             "via": "VA-904",
             "pkinicio": 5.5,
             "pkfin": 7,
@@ -3136,35 +3370,89 @@
             "provincia": "Valladolid",
             "via": "VA-941",
             "pkinicio": 0,
-            "pkfin": 7.39,
+            "pkfin": 6,
             "tramo": "DE MAYORGA (N-601) A SAELICES DE MAYORGA",
             "tipo": "Precaución",
             "causa": "Otras",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 09:36:25",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237220",
-            "numincidencia": 237220,
-            "fechamodificacion": "2026\/02\/04 09:37:25"
+            "observaciones": "Pavimentación",
+            "fechaalta": "2026\/02\/05 08:50:01",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237340",
+            "numincidencia": 237340,
+            "fechamodificacion": ""
         }
     },
     {
         "fields": {
-            "provincia": "Valladolid",
-            "via": "VA-941",
-            "pkinicio": 7.39,
-            "pkfin": 20.6,
-            "tramo": "DE SAELICES DE MAYORGA A LÍMITE DE PROVINCIA DE LEÓN",
+            "provincia": "Zamora",
+            "via": "ZA-102",
+            "pkinicio": 0,
+            "pkfin": 1.07,
+            "tramo": "DE N-525 A LÍMITE DE PROVINCIA DE ORENSE (TRAMO EN LA PROVINCIA DE ORENSE)",
             "tipo": "Precaución",
-            "causa": "Otras",
+            "causa": "Inundación",
             "calzada": "Única",
             "rutaalt": "",
-            "observaciones": "--",
-            "fechaalta": "2026\/02\/04 09:36:25",
-            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237221",
-            "numincidencia": 237221,
-            "fechamodificacion": "2026\/02\/04 09:37:46"
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:44:21",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237365",
+            "numincidencia": 237365,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Zamora",
+            "via": "ZA-102",
+            "pkinicio": 1.07,
+            "pkfin": 9.37,
+            "tramo": "DE LÍMITE DE PROVINCIA DE ORENSE A ZA-101",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:44:21",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237366",
+            "numincidencia": 237366,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Zamora",
+            "via": "ZA-102",
+            "pkinicio": 9.37,
+            "pkfin": 21.01,
+            "tramo": "DE ZA-101 A LÍMITE DE PROVINCIA DE ORENSE",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:44:21",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237367",
+            "numincidencia": 237367,
+            "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Zamora",
+            "via": "ZA-102",
+            "pkinicio": 21.01,
+            "pkfin": 27.28,
+            "tramo": "DE LÍMITE DE PROVINCIA DE ORENSE A PORTO",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 09:44:21",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237368",
+            "numincidencia": 237368,
+            "fechamodificacion": ""
         }
     },
     {
@@ -3201,6 +3489,24 @@
             "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=236701",
             "numincidencia": 236701,
             "fechamodificacion": ""
+        }
+    },
+    {
+        "fields": {
+            "provincia": "Zamora",
+            "via": "ZA-110",
+            "pkinicio": 7.8,
+            "pkfin": 8.3,
+            "tramo": "DE CAMARZANA DE TERA (N-525) A SANTIBÁÑEZ DE VIDRIALES (ZA-P-2555)",
+            "tipo": "Precaución",
+            "causa": "Inundación",
+            "calzada": "Única",
+            "rutaalt": "",
+            "observaciones": "Balsas puntuales",
+            "fechaalta": "2026\/02\/05 13:23:59",
+            "masinfo": "https:\/\/servicios.jcyl.es\/InviPublica\/index.html?numInci=237423",
+            "numincidencia": 237423,
+            "fechamodificacion": "2026\/02\/05 13:35:47"
         }
     },
     {
